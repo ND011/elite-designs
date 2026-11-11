@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-canvas: #F3F3F1;
+  --text-primary: #1E1F1E;
+  --border-mineral: #D5D3CC;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+/* Custom architectural grid pattern */
+.bg-arch-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(213, 211, 204, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(213, 211, 204, 0.45) 1px, transparent 1px);
+}
+
+.bg-arch-subgrid {
+  background-size: 8px 8px;
+  background-image: 
+    linear-gradient(to right, rgba(213, 211, 204, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(213, 211, 204, 0.2) 1px, transparent 1px);
+}
