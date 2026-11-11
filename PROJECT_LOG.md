@@ -80,3 +80,20 @@ This log tracks every architectural decision, file creation, bug fix, and verifi
   - 5-Stage Design Process (*Understand → Research → Concept Development → Design Development → Delivery*).
   - Interactive Project & Modular Frame Enquiry Form with direct email/brief formatting.
 - Linked `/studio` in `components/Navbar.jsx`, `components/Footer.jsx`, and `app/page.js`.
+
+
+---
+
+## [2026-11-11] Session 03 — Full 12-Section Design Firm Website Architecture (`Option D`)
+
+### 1. Structured Studio Data Repository (`data/studioData.js`)
+- Created `data/studioData.js` encoding all 10 required content categories from the *Design Firm Website Planning Guide*:
+  - `STUDIO_IDENTITY`: Official firm name (**Elite Designs**), headline (*"Designing Spaces, Objects and Experiences"*), philosophy, mission, vision, 4 core values, and founder credentials for **Mohammadali G. Tharadara** (*Master's in Design, Design Researcher, Retail/Spatial/Furniture Practitioner & Educator*).
+  - `SERVICES_CATALOG`: All 6 distinct disciplines (*01 Architecture & Spatial Design*, *02 Interior Architecture & Design*, *03 Bespoke & Modular Furniture Design*, *04 Product & Industrial Design*, *05 Retail, Exhibition & Experimental Design*, *06 Design Consultancy, Visualisation & Education*), each structured with **What it includes**, **Who it is for**, and **Expected deliverables**.
+  - `PORTFOLIO_PROJECTS`: 6 complete project case studies with individual slugs, metadata, brief, design challenge, concept, research, materials, and final outcome—including the newly added `master-bedroom-spread.jpg` and `product-prototyping-board.jpg`.
+  - `JOURNAL_ARTICLES`: 3 research-backed articles (*Designing Small Homes: Five Principles*, *Material Honesty in Contemporary Indian Interiors*, *From Sketch to 1:1 Prototype*).
+
+### 2. Dedicated Portfolio & Case Study Routes (`app/projects/`)
+- Built `app/projects/page.js` for filtering and browsing portfolio works.
+- Built `app/projects/[slug]/page.js` with `generateStaticParams()` so every project has its own dedicated case study URL (`/projects/ikigai-apartment-metamorphosis`, `/projects/rotary-kulcha-roti-maker-prototype`, etc.).
+- Upgraded `app/studio/page.js` and `components/Navbar.jsx` to link the complete 7-route architecture.

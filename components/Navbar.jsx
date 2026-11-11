@@ -13,6 +13,7 @@ import {
   X,
   ArrowUpRight,
   Briefcase,
+  FolderKanban,
 } from "lucide-react";
 import { useSpace } from "@/context/SpaceContext";
 
@@ -22,7 +23,8 @@ const NAV_ROUTES = [
   { href: "/diagnosis", label: "Diagnosis", step: "03", icon: Activity },
   { href: "/materials", label: "Materials", step: "04", icon: Layers },
   { href: "/builder", label: "Builder", step: "05", icon: Grid },
-  { href: "/studio", label: "Studio & Portfolio", step: "06", icon: Briefcase },
+  { href: "/projects", label: "Portfolio", step: "06", icon: FolderKanban },
+  { href: "/studio", label: "Studio", step: "07", icon: Briefcase },
 ];
 
 export default function Navbar() {

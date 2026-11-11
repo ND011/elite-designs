@@ -16,82 +16,14 @@ import {
   Sparkles,
   FileText,
   Send,
+  BookOpen,
 } from "lucide-react";
-
-const PORTFOLIO_SHEETS = [
-  {
-    id: "ikigai-apartment",
-    title: "Ikigai Residential Metamorphosis",
-    category: "Interior Design",
-    location: "Urban Compact Apartment",
-    year: "2025",
-    status: "Design Development & Moodboard",
-    image: "/portfolio/ikigai-apartment-board.jpg",
-    summary:
-      "A transformative residential interior renovation concept crafted for a family of five—harmonizing light oak wood, walnut joinery, white marble, and multifunctional living zones.",
-    deliverables: ["Site & Sunlight Study", "Material Palette", "3D Interior Section"],
-  },
-  {
-    id: "apartment-interior-sheet",
-    title: "Radial Plan Apartment & Custom Millwork",
-    category: "Interior Design",
-    location: "High-Rise Residence",
-    year: "2025",
-    status: "Technical Documentation",
-    image: "/portfolio/apartment-interior-sheet.jpg",
-    summary:
-      "Complete interior architecture package featuring radial floorplan zoning, reflected ceiling plans, acoustic wall paneling details, and integrated dining-kitchen millwork.",
-    deliverables: ["1:75 Floorplans", "Ceiling & Lighting Plan", "Wall Section Details"],
-  },
-  {
-    id: "spatial-elevation-board",
-    title: "Public Pavilion & Helical Circulation Study",
-    category: "Spatial Design",
-    location: "Cultural Exhibition Center",
-    year: "2024",
-    status: "Conceptual Architecture",
-    image: "/portfolio/spatial-elevation-board.jpg",
-    summary:
-      "Long-span metallic truss envelope with sculpted roof lightwells and a double-height crimson helical ramp anchoring the public exhibition hall.",
-    deliverables: ["1:100 Elevations", "Double-Height Section", "Physical Study Models"],
-  },
-  {
-    id: "daylight-spatial-research",
-    title: "House of Light & Shadows — Heliostatic Study",
-    category: "Spatial Design",
-    location: "Narrow Urban Infill Plot",
-    year: "2024",
-    status: "Design Research",
-    image: "/portfolio/daylight-spatial-research.jpg",
-    summary:
-      "Architectural research exploring linear top-light skylights, prism louvers, and glass-brick interior partitions to channel natural daylight deep into a narrow urban plot.",
-    deliverables: ["Solar Ray Diagrams", "1:200 Plans & Sections", "Sectional Physical Model"],
-  },
-  {
-    id: "sectional-model-study",
-    title: "Exoskeletal Diagrid & Sectional Model",
-    category: "Product & Object Design",
-    location: "Academic & Studio Research",
-    year: "2024",
-    status: "Prototype & Model",
-    image: "/portfolio/sectional-model-study.jpg",
-    summary:
-      "1:50 polystyrene and plexiglass sectional fabrication investigating load-bearing modular exoskeletons that free interior floorplates from internal columns.",
-    deliverables: ["Exploded Axonometric", "1:50 Physical Model", "Structural Elevation"],
-  },
-  {
-    id: "curated-architecture",
-    title: "Brick Vault & Visual Identity System",
-    category: "Spatial Design",
-    location: "Ahmedabad / Studio Direction",
-    year: "2025",
-    status: "Concept Reference",
-    image: "/portfolio/curated-architecture.jpg",
-    summary:
-      "Translating tactile brick-and-concrete architectural geometry into a cohesive spatial direction and restrained visual identity system.",
-    deliverables: ["Material Direction", "Parametric Brick Facade", "Brand Identity"],
-  },
-];
+import {
+  STUDIO_IDENTITY,
+  SERVICES_CATALOG,
+  PORTFOLIO_PROJECTS,
+  JOURNAL_ARTICLES,
+} from "@/data/studioData";
 
 const DESIGN_PROCESS_STAGES = [
   {
@@ -128,10 +60,10 @@ export default function StudioPage() {
     fullName: "",
     email: "",
     phone: "",
-    projectType: "Interior Design",
+    projectType: "Interior Architecture & Design",
     location: "Ahmedabad, Gujarat",
     areaSqFt: "",
-    budgetRange: "₹25,000 – ₹1,50,000 (Modular / Room Upgrade)",
+    budgetRange: "₹1,50,000 – ₹5,00,000 (Bespoke Interior + Furniture)",
     timeline: "Within 1–2 Months",
     description: "",
   });
@@ -139,14 +71,14 @@ export default function StudioPage() {
   const categories = [
     "All",
     "Interior Design",
-    "Spatial Design",
-    "Product & Object Design",
+    "Product Design",
+    "Architecture & Spatial",
   ];
 
   const filteredProjects =
     activeCategory === "All"
-      ? PORTFOLIO_SHEETS
-      : PORTFOLIO_SHEETS.filter((p) => p.category === activeCategory);
+      ? PORTFOLIO_PROJECTS
+      : PORTFOLIO_PROJECTS.filter((p) => p.category === activeCategory);
 
   const handleEnquirySubmit = (e) => {
     e.preventDefault();
@@ -166,54 +98,38 @@ export default function StudioPage() {
                 className="w-6 h-6 object-contain"
               />
               <span className="text-xs font-mono uppercase tracking-widest text-charcoal">
-                ELITE DESIGNS STUDIO • AHMEDABAD, INDIA
+                {STUDIO_IDENTITY.firmName.toUpperCase()} •{" "}
+                {STUDIO_IDENTITY.founder.location.toUpperCase()}
               </span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-charcoal leading-[1.08]">
-              Thoughtful spaces for modern living.
+              {STUDIO_IDENTITY.headline}
             </h1>
 
             <p className="text-base text-concrete-600 leading-relaxed max-w-2xl">
-              “We believe good design begins with understanding. By exploring
-              the relationship between people, space, material, geometry, and
-              function, we develop design solutions that are purposeful,
-              considered, and enduring.”
+              {STUDIO_IDENTITY.supportingStatement}
             </p>
 
-            <div className="flex flex-wrap gap-2 pt-1">
-              {[
-                "Interior Design",
-                "Furniture Design",
-                "Product Design",
-                "Spatial Design",
-                "UI/UX Design",
-                "Design Management",
-              ].map((pill) => (
-                <span
-                  key={pill}
-                  className="px-3 py-1 border border-mineral-100 bg-concrete-100/70 text-xs font-mono text-charcoal"
-                >
-                  {pill}
-                </span>
-              ))}
-            </div>
+            <blockquote className="p-4 border-l-2 border-charcoal bg-concrete-50/70 text-sm italic font-serif text-charcoal">
+              “{STUDIO_IDENTITY.philosophy}”
+            </blockquote>
 
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-charcoal text-canvas text-xs uppercase tracking-widest font-medium hover:bg-concrete-800 transition-colors"
+              >
+                <span>Explore Full Portfolio</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
               <a
                 href="#enquiry-form"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-charcoal text-canvas text-xs uppercase tracking-widest font-medium hover:bg-concrete-800 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 border border-charcoal bg-canvas text-charcoal text-xs uppercase tracking-widest font-medium hover:bg-concrete-200/50 transition-colors"
               >
                 <span>Discuss Your Project</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
-              <Link
-                href="/space-check"
-                className="inline-flex items-center gap-2 px-6 py-3.5 border border-charcoal bg-canvas text-charcoal text-xs uppercase tracking-widest font-medium hover:bg-concrete-200/50 transition-colors"
-              >
-                <span>Launch Growspace Room Audit</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
             </div>
           </div>
 
@@ -234,70 +150,54 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* 2. FOUNDER PROFILE & BRAND CARD */}
+      {/* 2. FOUNDER PROFILE, CREDENTIALS & DIGITAL VISITING CARD */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Founder Portrait & Bio */}
-        <div className="lg:col-span-7 border border-mineral-100 bg-canvas p-6 sm:p-8 flex flex-col sm:flex-row gap-8 items-center">
-          <div className="w-full sm:w-56 shrink-0 border border-mineral-100 bg-concrete-100 p-2">
-            <img
-              src="/brand/founder-portrait.jpg"
-              alt="Mohammadali G. Tharadara"
-              className="w-full h-72 object-cover"
-            />
-          </div>
-          <div className="space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-concrete-500">
-              FOUNDER & PRINCIPAL EDUCATOR
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-              Mohammadali G. Tharadara
-            </h2>
-            <p className="text-xs font-mono uppercase tracking-wider text-accent-brass">
-              Designer + Educator • Ahmedabad, Gujarat, India
-            </p>
-            <p className="text-sm text-concrete-600 leading-relaxed">
-              Leading a multidisciplinary practice at the intersection of
-              interior architecture, modular furniture systems, industrial
-              product design, and design education. Every project balances
-              tactile material honesty with rigorous human-centered ergonomics—from
-              bespoke residential interiors to the{" "}
-              <strong className="text-charcoal">Growspace</strong> modular
-              frame platform.
-            </p>
-            <div className="pt-3 border-t border-mineral-100 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-              <a
-                href="tel:+918980676705"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>+91 89806 76705</span>
-              </a>
-              <a
-                href="mailto:mg.th257@gmail.com"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>mg.th257@gmail.com</span>
-              </a>
-              <a
-                href="https://instagram.com/elitedesigns226"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <Instagram className="w-3.5 h-3.5" />
-                <span>@elitedesigns226</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/mohammad-ali-tharadara-577424187"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <Linkedin className="w-3.5 h-3.5" />
-                <span>mohammad-ali-tharadara</span>
-              </a>
+        <div className="lg:col-span-7 border border-mineral-100 bg-canvas p-6 sm:p-8 flex flex-col justify-between">
+          <div className="flex flex-col sm:flex-row gap-8 items-center">
+            <div className="w-full sm:w-52 shrink-0 border border-mineral-100 bg-concrete-100 p-2">
+              <img
+                src="/brand/founder-portrait.jpg"
+                alt={STUDIO_IDENTITY.founder.name}
+                className="w-full h-64 object-cover"
+              />
             </div>
+            <div className="space-y-3">
+              <span className="text-xs font-mono uppercase tracking-widest text-concrete-500">
+                FOUNDER PROFILE & CREDENTIALS
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
+                {STUDIO_IDENTITY.founder.name}
+              </h2>
+              <p className="text-xs font-mono uppercase tracking-wider text-accent-brass">
+                {STUDIO_IDENTITY.founder.credentials}
+              </p>
+              <p className="text-sm text-concrete-600 leading-relaxed">
+                With a background bridging postgraduate design education,
+                academic design research, retail space design, and furniture/product
+                prototyping, Mohammadali G. Tharadara leads{" "}
+                <strong className="text-charcoal">Elite Designs</strong> in
+                Ahmedabad. His dual role as practitioner and educator ensures
+                every commission is grounded in analytical research, material
+                longevity, and clear technical communication.
+              </p>
+            </div>
+          </div>
+
+          {/* Studio Values Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 mt-6 border-t border-mineral-100">
+            {STUDIO_IDENTITY.values.map((val) => (
+              <div
+                key={val.title}
+                className="p-3.5 border border-mineral-100 bg-concrete-50/50"
+              >
+                <h3 className="font-serif text-lg text-charcoal font-semibold">
+                  {val.title}
+                </h3>
+                <p className="text-xs text-concrete-600 mt-1 leading-relaxed">
+                  {val.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -322,96 +222,127 @@ export default function StudioPage() {
             alt="Elite Designs Visiting Card & QR Connect"
             className="w-full h-72 object-contain border border-mineral-100 bg-concrete-50 p-2"
           />
-          <p className="text-[11px] font-mono text-concrete-500 mt-3 text-center">
-            Scan QR code on card to save studio contact directly to your phone.
-          </p>
+          <div className="pt-4 mt-4 border-t border-mineral-100 grid grid-cols-2 gap-2 text-xs font-mono">
+            <a
+              href={`tel:${STUDIO_IDENTITY.founder.phone.replace(/\s+/g, "")}`}
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>{STUDIO_IDENTITY.founder.phone}</span>
+            </a>
+            <a
+              href={`mailto:${STUDIO_IDENTITY.founder.email}`}
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>{STUDIO_IDENTITY.founder.email}</span>
+            </a>
+            <a
+              href={STUDIO_IDENTITY.founder.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <Instagram className="w-3.5 h-3.5" />
+              <span>{STUDIO_IDENTITY.founder.instagram}</span>
+            </a>
+            <a
+              href={STUDIO_IDENTITY.founder.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 hover:underline truncate"
+            >
+              <Linkedin className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">LinkedIn Profile</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* 3. MULTIDISCIPLINARY SERVICES MATRIX */}
+      {/* 3. COMPLETE 6-DISCIPLINE SERVICES MATRIX (SECTION 4 OF GUIDE) */}
       <section className="space-y-8">
-        <div className="border-b border-mineral-100 pb-4">
-          <span className="text-xs font-mono uppercase tracking-widest text-concrete-500 block mb-1">
-            PRACTICE DISCIPLINES
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-mineral-100 pb-4">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-concrete-500 block mb-1">
+              WHAT CLIENTS CAN COMMISSION US FOR
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
+              Six Multidisciplinary Design Services
+            </h2>
+          </div>
+          <span className="text-xs font-mono text-concrete-600">
+            Regions: {STUDIO_IDENTITY.founder.serviceRegions}
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-            Services & Deliverables
-          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              code: "01 // INTERIORS",
-              title: "Interior Architecture & Design",
-              subtitle: "Material • Comfort • Detail",
-              scope:
-                "Residential, retail, office, and hospitality interiors; compact space planning; furniture layouts; lighting concepts; and turnkey refurbishment.",
-              deliverables: "2D Layouts, 3D Renders, Material Boards, Working Drawings",
-            },
-            {
-              code: "02 // FURNITURE",
-              title: "Bespoke & Modular Furniture",
-              subtitle: "Craft • Proportion • Utility",
-              scope:
-                "Custom residential/commercial furniture, the Growspace boltless MS + BWR ply modular frame system, joinery engineering, and prototyping.",
-              deliverables: "Shop Drawings, Joinery Nodes, Cut-Lists, Prototypes",
-            },
-            {
-              code: "03 // PRODUCT",
-              title: "Product & Industrial Design",
-              subtitle: "Function • Form • Iteration",
-              scope:
-                "Functional everyday objects, hardware nodes, material experimentation, CAD 3D modeling, and manufacturing-ready development.",
-              deliverables: "3D CAD Assemblies, Tolerance Specs, Physical Mockups",
-            },
-            {
-              code: "04 // SPATIAL",
-              title: "Spatial & Exhibition Design",
-              subtitle: "Form • Light • Context",
-              scope:
-                "Architectural concepts, facade studies, daylight/shadow optimization, exhibition environments, and design consultancy.",
-              deliverables: "Sectional Models, Solar Studies, Spatial Narratives",
-            },
-          ].map((srv) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICES_CATALOG.map((srv) => (
             <div
-              key={srv.code}
+              key={srv.id}
               className="border border-mineral-100 bg-canvas p-6 flex flex-col justify-between hover:border-charcoal transition-colors"
             >
-              <div className="space-y-3">
-                <span className="text-[11px] font-mono uppercase tracking-widest text-concrete-500">
-                  {srv.code}
-                </span>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-concrete-500">
+                    SERVICE {srv.number}
+                  </span>
+                  <span className="text-accent-brass">{srv.subtitle}</span>
+                </div>
+
                 <h3 className="font-serif text-2xl text-charcoal">
                   {srv.title}
                 </h3>
-                <p className="text-xs font-mono text-accent-brass">
-                  {srv.subtitle}
-                </p>
+
                 <p className="text-xs text-concrete-600 leading-relaxed">
-                  {srv.scope}
+                  {srv.summary}
                 </p>
+
+                <div className="space-y-1.5 pt-2 border-t border-mineral-100">
+                  <span className="text-[10px] font-mono uppercase text-concrete-500 block">
+                    WHAT IT INCLUDES:
+                  </span>
+                  {srv.includes.map((inc) => (
+                    <div
+                      key={inc}
+                      className="flex items-start gap-2 text-xs text-charcoal"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5 text-accent-sage shrink-0 mt-0.5" />
+                      <span>{inc}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-mineral-100 text-[11px] font-mono text-concrete-600">
-                <strong className="text-charcoal block mb-0.5">
-                  DELIVERABLES:
-                </strong>
-                {srv.deliverables}
+
+              <div className="pt-4 mt-5 border-t border-mineral-100 space-y-2 text-xs">
+                <div>
+                  <span className="font-mono text-[10px] uppercase text-concrete-500 block">
+                    IDEAL FOR:
+                  </span>
+                  <span className="text-concrete-800">{srv.forWhom}</span>
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase text-concrete-500 block">
+                    KEY DELIVERABLES:
+                  </span>
+                  <span className="font-mono text-[11px] text-charcoal">
+                    {srv.deliverables.join(" • ")}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 4. CURATED PORTFOLIO & ARCHITECTURAL PRESENTATION BOARDS */}
+      {/* 4. CURATED PORTFOLIO & CASE STUDIES (SECTION 5 OF GUIDE) */}
       <section className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-mineral-100 pb-6">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-concrete-500 block mb-1">
-              SELECTED WORKS & RESEARCH SHEETS
+              SELECTED PORTFOLIO CASE STUDIES
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-              Portfolio & Spatial Studies
+              Featured Projects & Research Sheets
             </h2>
           </div>
 
@@ -433,79 +364,76 @@ export default function StudioPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
             <div
-              key={project.id}
-              className="border border-mineral-100 bg-canvas flex flex-col justify-between hover:border-charcoal transition-all"
+              key={project.slug}
+              className="border border-mineral-100 bg-canvas flex flex-col justify-between hover:border-charcoal transition-all group"
             >
               <div>
-                <div className="p-4 border-b border-mineral-100 bg-concrete-50">
-                  <div className="flex items-center justify-between text-xs font-mono text-concrete-500 mb-3">
+                <div className="p-3.5 border-b border-mineral-100 bg-concrete-50">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-concrete-500 mb-2">
                     <span>{project.category.toUpperCase()}</span>
-                    <span>
-                      {project.location} • {project.year}
-                    </span>
+                    <span>{project.year}</span>
                   </div>
-                  <div className="h-64 overflow-hidden border border-mineral-100 bg-canvas">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="block h-52 overflow-hidden border border-mineral-100 bg-canvas"
+                  >
                     <img
-                      src={project.image}
+                      src={project.coverImage}
                       alt={project.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                  </div>
+                  </Link>
                 </div>
 
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-serif text-2xl text-charcoal">
+                <div className="p-5 space-y-2.5">
+                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 border border-mineral-100 bg-concrete-50 text-concrete-600">
+                    {project.status} • {project.location}
+                  </span>
+                  <Link href={`/projects/${project.slug}`}>
+                    <h3 className="font-serif text-2xl text-charcoal group-hover:underline underline-offset-4 mt-1">
                       {project.title}
                     </h3>
-                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 border border-mineral-100 bg-concrete-50 text-concrete-600">
-                      {project.status}
-                    </span>
-                  </div>
-                  <p className="text-sm text-concrete-600 leading-relaxed">
-                    {project.summary}
+                  </Link>
+                  <p className="text-xs text-concrete-600 leading-relaxed line-clamp-3">
+                    {project.brief}
                   </p>
                 </div>
               </div>
 
-              <div className="px-6 py-4 border-t border-mineral-100 bg-concrete-50/50 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                <div className="flex flex-wrap gap-2">
-                  {project.deliverables.map((d) => (
-                    <span
-                      key={d}
-                      className="px-2 py-0.5 border border-mineral-100 bg-canvas text-[10px]"
-                    >
-                      {d}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={project.image}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-charcoal underline underline-offset-4"
+              <div className="px-5 py-3.5 border-t border-mineral-100 bg-concrete-50/50 flex items-center justify-between text-xs font-mono">
+                <span className="text-concrete-500 truncate max-w-[160px]">
+                  {project.role}
+                </span>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="inline-flex items-center gap-1 text-charcoal font-semibold hover:underline underline-offset-4"
                 >
-                  <span>Full Sheet</span>
+                  <span>Case Study</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 5. 5-STAGE DESIGN PROCESS */}
+      {/* 5. 5-STAGE DESIGN PROCESS (SECTION 6 OF GUIDE) */}
       <section className="border border-mineral-100 bg-canvas p-6 sm:p-10 space-y-8">
-        <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-concrete-500 block mb-1">
-            METHODOLOGY FROM THE STUDIO BRIEF
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-concrete-500 block mb-1">
+              HOW WE TURN AN INITIAL IDEA INTO FINISHED DESIGN
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
+              Five-Stage Studio Design Process
+            </h2>
+          </div>
+          <span className="text-xs font-mono text-concrete-600">
+            Scope: Design Consultancy, Technical Documentation & Prototyping
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-            Five-Stage Design Process
-          </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -526,7 +454,56 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* 6. PROJECT ENQUIRY FORM (FROM SECTION 8 OF PLANNING GUIDE) */}
+      {/* 6. JOURNAL & DESIGN INSIGHTS (SECTION 8 OF GUIDE) */}
+      <section className="space-y-8">
+        <div className="border-b border-mineral-100 pb-4">
+          <span className="text-xs font-mono uppercase tracking-widest text-concrete-500 block mb-1">
+            RESEARCH & ACADEMIC THOUGHT LEADERSHIP
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
+            Journal & Design Insights
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {JOURNAL_ARTICLES.map((art) => (
+            <article
+              key={art.slug}
+              className="border border-mineral-100 bg-canvas p-6 flex flex-col justify-between"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-concrete-500">
+                  <span>{art.category.toUpperCase()}</span>
+                  <span>{art.readTime}</span>
+                </div>
+                <h3 className="font-serif text-2xl text-charcoal leading-snug">
+                  {art.title}
+                </h3>
+                <p className="text-xs text-concrete-600 leading-relaxed">
+                  {art.excerpt}
+                </p>
+                <ul className="space-y-1.5 pt-3 border-t border-mineral-100">
+                  {art.takeaways.map((t) => (
+                    <li
+                      key={t}
+                      className="text-xs text-charcoal flex items-start gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-brass mt-1.5 shrink-0" />
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pt-4 mt-4 border-t border-mineral-100 flex items-center justify-between text-xs font-mono text-concrete-500">
+                <span>Published: {art.date}</span>
+                <span className="text-charcoal">By M. G. Tharadara</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* 7. PROJECT ENQUIRY FORM (SECTION 7 OF GUIDE) */}
       <section
         id="enquiry-form"
         className="border border-charcoal bg-canvas p-6 sm:p-10"
@@ -534,16 +511,14 @@ export default function StudioPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5 space-y-4">
             <span className="text-xs font-mono uppercase tracking-widest text-concrete-500">
-              START A CONVERSATION
+              START A PROJECT WITH ELITE DESIGNS
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
               Project & Modular Frame Enquiry
             </h2>
             <p className="text-sm text-concrete-600 leading-relaxed">
-              Whether you are commissioning a full residential interior in
-              Ahmedabad, custom furniture prototyping, or ordering a custom
-              Growspace modular frame assembly, share your project parameters
-              below.
+              Share your project parameters below to schedule an initial
+              consultation with <strong>Mohammadali G. Tharadara</strong>.
             </p>
 
             <div className="p-5 border border-mineral-100 bg-concrete-50 space-y-3 text-xs">
@@ -551,15 +526,14 @@ export default function StudioPage() {
                 DIRECT STUDIO CHANNELS
               </div>
               <p className="font-medium text-charcoal">
-                Mohammadali G. Tharadara — Elite Designs
+                {STUDIO_IDENTITY.founder.name} — {STUDIO_IDENTITY.firmName}
               </p>
               <p className="text-concrete-600">
-                Service Regions: Ahmedabad, Gujarat • Pan-India Modular Delivery
-                • Remote Design Consultancy
+                Service Regions: {STUDIO_IDENTITY.founder.serviceRegions}
               </p>
               <div className="pt-2 space-y-1 font-mono">
-                <div>Phone / WhatsApp: +91 89806 76705</div>
-                <div>Email: mg.th257@gmail.com</div>
+                <div>Phone / WhatsApp: {STUDIO_IDENTITY.founder.phone}</div>
+                <div>Email: {STUDIO_IDENTITY.founder.email}</div>
               </div>
             </div>
           </div>
@@ -577,12 +551,14 @@ export default function StudioPage() {
                 <p className="text-sm text-concrete-600">
                   Your enquiry for <strong>{formState.projectType}</strong> in{" "}
                   <strong>{formState.location}</strong> ({formState.budgetRange})
-                  has been formatted. You can also send it immediately via
-                  email or WhatsApp to Mohammadali G. Tharadara:
+                  has been formatted. Click below to send directly via email or
+                  edit your brief:
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                   <a
-                    href={`mailto:mg.th257@gmail.com?subject=${encodeURIComponent(
+                    href={`mailto:${
+                      STUDIO_IDENTITY.founder.email
+                    }?subject=${encodeURIComponent(
                       `Project Enquiry: ${formState.projectType} - ${formState.fullName}`
                     )}&body=${encodeURIComponent(
                       `Name: ${formState.fullName}\nPhone: ${formState.phone}\nLocation: ${formState.location}\nArea: ${formState.areaSqFt} sq.ft\nBudget: ${formState.budgetRange}\nTimeline: ${formState.timeline}\n\nBrief:\n${formState.description}`
@@ -664,11 +640,12 @@ export default function StudioPage() {
                       }
                       className="w-full px-3.5 py-2.5 border border-mineral-100 bg-concrete-50/50 text-sm focus:outline-none focus:border-charcoal"
                     >
+                      <option>Interior Architecture & Design</option>
                       <option>Growspace Modular Frame Kit</option>
-                      <option>Residential Interior Design</option>
-                      <option>Commercial / Studio Interior</option>
+                      <option>Architecture & Spatial Design</option>
                       <option>Bespoke Furniture Design</option>
-                      <option>Product / Industrial Design</option>
+                      <option>Product & Industrial Design</option>
+                      <option>Design Consultancy & 3D Visualisation</option>
                     </select>
                   </div>
                   <div>
@@ -681,7 +658,7 @@ export default function StudioPage() {
                       onChange={(e) =>
                         setFormState({ ...formState, areaSqFt: e.target.value })
                       }
-                      placeholder="e.g., 120 sq.ft room / 1200 sq.ft flat"
+                      placeholder="e.g., 120 sq.ft room / 1500 sq.ft flat"
                       className="w-full px-3.5 py-2.5 border border-mineral-100 bg-concrete-50/50 text-sm focus:outline-none focus:border-charcoal"
                     />
                   </div>
@@ -743,8 +720,8 @@ export default function StudioPage() {
 
                 <div className="flex items-center justify-between pt-2">
                   <span className="text-[11px] text-concrete-500">
-                    Privacy Notice: Details are used solely to prepare your
-                    initial design consultation.
+                    Privacy Notice: Submitted information is used strictly to
+                    evaluate project scope and respond to your enquiry.
                   </span>
                   <button
                     type="submit"
@@ -762,4 +739,3 @@ export default function StudioPage() {
     </div>
   );
 }
-
