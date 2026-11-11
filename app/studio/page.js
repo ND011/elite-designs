@@ -496,7 +496,13 @@ export default function StudioPage() {
               </div>
               <div className="pt-4 mt-4 border-t border-mineral-100 flex items-center justify-between text-xs font-mono text-concrete-500">
                 <span>Published: {art.date}</span>
-                <span className="text-charcoal">By M. G. Tharadara</span>
+                <Link
+                  href={`/journal/${art.slug}`}
+                  className="inline-flex items-center gap-1 text-charcoal font-semibold hover:underline underline-offset-4"
+                >
+                  <span>Read Article</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </article>
           ))}

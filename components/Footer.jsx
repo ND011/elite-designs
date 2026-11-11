@@ -143,7 +143,15 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-concrete-500 gap-4">
-          <p>© {new Date().getFullYear()} Growspace System by Elite Designs. Thoughtful spaces for modern living.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <p>© {new Date().getFullYear()} Growspace System by Elite Designs. Thoughtful spaces for modern living.</p>
+            <Link
+              href="/privacy-policy"
+              className="underline underline-offset-4 hover:text-charcoal font-mono"
+            >
+              Privacy Policy & Legal Notice
+            </Link>
+          </div>
           <p className="font-mono">
             PALETTE: #F3F3F1 CANVAS • #1E1F1E CHARCOAL • #D5D3CC MINERAL
           </p>

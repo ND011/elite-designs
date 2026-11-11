@@ -97,3 +97,18 @@ This log tracks every architectural decision, file creation, bug fix, and verifi
 - Built `app/projects/page.js` for filtering and browsing portfolio works.
 - Built `app/projects/[slug]/page.js` with `generateStaticParams()` so every project has its own dedicated case study URL (`/projects/ikigai-apartment-metamorphosis`, `/projects/rotary-kulcha-roti-maker-prototype`, etc.).
 - Upgraded `app/studio/page.js` and `components/Navbar.jsx` to link the complete 7-route architecture.
+
+
+---
+
+## [2026-11-11] Session 04 — Version 1 (`v1.0.0`) Release & GitHub Push
+
+### 1. Journal Article & Privacy Policy Routes
+- Added `app/journal/[slug]/page.js` with `generateStaticParams()` for individual design research articles.
+- Added `app/privacy-policy/page.js` covering project enquiry data transparency, `localStorage` spatial state, and portfolio intellectual property disclosure.
+- Linked both routes from `app/studio/page.js` and `components/Footer.jsx`.
+
+### 2. Version 1 Tag & Remote Push
+- Committed all remaining routes as **Version 1 (`v1.0.0`)**.
+- Tagged release `v1.0.0` (`Version 1: Complete Growspace × Elite Designs Platform`).
+- Pushed `main` branch and `v1.0.0` tag to `https://github.com/ND011/elite-designs.git`.
