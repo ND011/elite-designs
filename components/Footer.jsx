@@ -1,163 +1,181 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, MapPin, Mail, Phone, Layers } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-mineral-100 bg-concrete-200/30 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-mineral-100">
-          {/* Studio column */}
-          <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border border-charcoal flex items-center justify-center bg-charcoal text-canvas">
-                <span className="font-serif text-base font-semibold">G</span>
+    <footer className="w-full bg-primary-container text-inverse-on-surface border-t border-surface-container-highest">
+      <div className="w-full px-margin lg:px-margin-desktop py-space-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-desktop">
+          {/* Studio Identity — Crisp Light Transparent Emblem */}
+          <div className="lg:col-span-5 flex flex-col justify-between pr-0 lg:pr-space-lg">
+            <div className="space-y-space-md">
+              <div className="flex items-center gap-4">
+                <img
+                  src="/brand/elite-emblem-light.png"
+                  alt="Elite Designs Official Emblem"
+                  className="w-20 h-20 object-contain shrink-0"
+                />
+                <div>
+                  <span className="font-display text-2xl uppercase tracking-[0.2em] text-surface-bright block">
+                    ELITE DESIGNS
+                  </span>
+                  <span className="font-label-mono text-label-mono uppercase text-on-primary-container tracking-widest block mt-1">
+                    Thoughtful spaces for modern living
+                  </span>
+                </div>
               </div>
-              <span className="font-serif text-2xl font-semibold tracking-tight">
-                GROWSPACE × ELITE DESIGNS
+              <p className="font-body-md text-body-md text-on-primary-container max-w-md">
+                An interdisciplinary design practice founded by{" "}
+                <strong className="text-surface-bright font-normal">
+                  Mohammadali G. Tharadara
+                </strong>{" "}
+                (Designer + Educator), exploring architecture, interior
+                environments, bespoke &amp; modular furniture, and industrial
+                products through thoughtful design, material exploration, and
+                purposeful form.
+              </p>
+            </div>
+            <div className="mt-space-lg pt-space-md border-t border-outline-variant/20 flex flex-wrap items-center gap-space-md">
+              <a
+                className="font-label-mono text-label-mono uppercase text-surface-bright hover:text-secondary-fixed transition-colors"
+                href="mailto:mg.th257@gmail.com"
+              >
+                mg.th257@gmail.com
+              </a>
+              <span className="text-outline font-label-mono text-label-mono">
+                •
               </span>
-            </div>
-            <p className="text-sm text-concrete-600 leading-relaxed max-w-md">
-              We believe good design begins with understanding. By exploring the
-              relationship between people, space, material, geometry, and function,
-              we engineer modular structural frames that reclaim vertical cubic
-              volume in compact Indian homes.
-            </p>
-            <div className="pt-2 space-y-1.5 text-xs text-concrete-600">
-              <div className="flex items-center gap-2">
-                <Layers className="w-3.5 h-3.5 text-charcoal" />
-                <span className="font-medium text-charcoal">
-                  Principal Designer + Educator: Mohammadali G. Tharadara
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-charcoal" />
-                <span>Ahmedabad, Gujarat, India</span>
-              </div>
-              <div className="flex items-center gap-4 pt-1">
-                <a
-                  href="mailto:mg.th257@gmail.com"
-                  className="inline-flex items-center gap-1.5 hover:text-charcoal underline underline-offset-4"
-                >
-                  <Mail className="w-3.5 h-3.5" />
-                  mg.th257@gmail.com
-                </a>
-                <a
-                  href="tel:+918980676705"
-                  className="inline-flex items-center gap-1.5 hover:text-charcoal underline underline-offset-4"
-                >
-                  <Phone className="w-3.5 h-3.5" />
-                  +91 89806 76705
-                </a>
-              </div>
+              <a
+                className="font-label-mono text-label-mono uppercase text-surface-bright hover:text-secondary-fixed transition-colors"
+                href="tel:+918980676705"
+              >
+                +91 89806 76705
+              </a>
             </div>
           </div>
 
-          {/* Workflow Navigation */}
-          <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-concrete-500">
-              Spatial Workflow
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
+          {/* Studio Location & Service Regions */}
+          <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+            <div className="space-y-space-xs">
+              <h4 className="font-label-lg text-label-lg uppercase tracking-widest text-surface-bright pb-space-xs border-b border-outline-variant/30">
+                Primary Studio
+              </h4>
+              <p className="font-body-sm text-body-sm text-on-primary-container pt-space-xs">
+                Elite Designs Studio
+                <br />
+                Ahmedabad, Gujarat
+                <br />
+                India (23°01′N 72°34′E)
+              </p>
+            </div>
+            <div className="space-y-space-xs">
+              <h4 className="font-label-lg text-label-lg uppercase tracking-widest text-surface-bright pb-space-xs border-b border-outline-variant/30">
+                Service Regions
+              </h4>
+              <p className="font-body-sm text-body-sm text-on-primary-container pt-space-xs">
+                Ahmedabad &amp; Gujarat
+                <br />
+                Pan-India Commissions
+                <br />
+                UAE &amp; Remote Consultancy
+              </p>
+            </div>
+          </div>
+
+          {/* Index & Dispatch */}
+          <div className="lg:col-span-3 flex flex-col justify-between space-y-space-lg">
+            <div className="space-y-space-sm">
+              <h4 className="font-label-lg text-label-lg uppercase tracking-widest text-surface-bright pb-space-xs border-b border-outline-variant/30">
+                Studio Navigation
+              </h4>
+              <div className="flex flex-col space-y-space-xs pt-space-xs">
                 <Link
-                  href="/"
-                  className="hover:underline underline-offset-4 flex items-center justify-between max-w-[220px]"
+                  className="font-body-sm text-body-sm text-on-primary-container hover:text-surface-bright transition-colors"
+                  href="/projects"
                 >
-                  <span>01. Home & Starter Kits</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  Portfolio &amp; Case Studies
                 </Link>
-              </li>
-              <li>
                 <Link
-                  href="/space-check"
-                  className="hover:underline underline-offset-4 flex items-center justify-between max-w-[220px]"
+                  className="font-body-sm text-body-sm text-on-primary-container hover:text-surface-bright transition-colors"
+                  href="/services"
                 >
-                  <span>02. 8-Step Space Check</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  Design Disciplines &amp; Services
                 </Link>
-              </li>
-              <li>
                 <Link
-                  href="/diagnosis"
-                  className="hover:underline underline-offset-4 flex items-center justify-between max-w-[220px]"
+                  className="font-body-sm text-body-sm text-on-primary-container hover:text-surface-bright transition-colors"
+                  href="/about"
                 >
-                  <span>03. Choke-Point Diagnosis</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  About Founder &amp; Philosophy
                 </Link>
-              </li>
-              <li>
                 <Link
-                  href="/materials"
-                  className="hover:underline underline-offset-4 flex items-center justify-between max-w-[220px]"
+                  className="font-body-sm text-body-sm text-on-primary-container hover:text-surface-bright transition-colors"
+                  href="/journal"
                 >
-                  <span>04. Tactile Materials & Joinery</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  Design Research &amp; Insights
                 </Link>
-              </li>
-              <li>
                 <Link
+                  className="font-body-sm text-body-sm text-on-primary-container hover:text-surface-bright transition-colors"
                   href="/builder"
-                  className="hover:underline underline-offset-4 flex items-center justify-between max-w-[220px]"
                 >
-                  <span>05. 2D Modular Frame Builder</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  Growspace 2D Frame Builder
                 </Link>
-              </li>
-              <li>
                 <Link
-                  href="/studio"
-                  className="hover:underline underline-offset-4 flex items-center justify-between max-w-[220px]"
+                  className="font-body-sm text-body-sm text-on-primary-container hover:text-surface-bright transition-colors"
+                  href="/contact"
                 >
-                  <span>06. Elite Designs Studio & Portfolio</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  Start a Project / Contact
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Material Standards */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-concrete-500">
-              Architectural Spec
-            </h4>
-            <div className="p-4 border border-mineral-100 bg-canvas space-y-2 text-xs">
-              <div className="flex justify-between">
-                <span className="text-concrete-600">Primary Grid:</span>
-                <span className="font-mono">300mm × 300mm</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-concrete-600">Structural Tube:</span>
-                <span className="font-mono">25×25mm MS 16G</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-concrete-600">Core Decking:</span>
-                <span className="font-mono">18mm IS:303 BWR Ply</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-concrete-600">Infill Glazing:</span>
-                <span className="font-mono">5mm Toughened Reeded</span>
-              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-space-sm pt-space-sm">
+              <a
+                className="font-label-mono text-label-mono uppercase text-on-primary-container hover:text-surface-bright transition-colors"
+                href="https://instagram.com/elitedesigns226"
+                target="_blank"
+                rel="noreferrer"
+              >
+                @elitedesigns226
+              </a>
+              <span className="text-outline font-label-mono text-label-mono">
+                /
+              </span>
+              <a
+                className="font-label-mono text-label-mono uppercase text-on-primary-container hover:text-surface-bright transition-colors"
+                href="https://www.linkedin.com/in/mohammad-ali-tharadara-577424187"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+              <span className="text-outline font-label-mono text-label-mono">
+                /
+              </span>
+              <Link
+                className="font-label-mono text-label-mono uppercase text-on-primary-container hover:text-surface-bright transition-colors"
+                href="/privacy-policy"
+              >
+                Privacy Policy
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-concrete-500 gap-4">
-          <div className="flex flex-wrap items-center gap-4">
-            <p>© {new Date().getFullYear()} Growspace System by Elite Designs. Thoughtful spaces for modern living.</p>
-            <Link
-              href="/privacy-policy"
-              className="underline underline-offset-4 hover:text-charcoal font-mono"
-            >
-              Privacy Policy & Legal Notice
-            </Link>
+        {/* Bottom Legal Bar */}
+        <div className="mt-space-xl pt-space-lg border-t border-outline-variant/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md text-on-primary-container">
+          <div className="flex flex-wrap items-center gap-space-md">
+            <span className="font-label-mono text-label-mono text-on-primary-container">
+              © 2026 ELITE DESIGNS — Mohammadali G. Tharadara. All Rights
+              Reserved.
+            </span>
           </div>
-          <p className="font-mono">
-            PALETTE: #F3F3F1 CANVAS • #1E1F1E CHARCOAL • #D5D3CC MINERAL
-          </p>
+          <div className="flex items-center gap-space-sm">
+            <span className="font-label-mono text-label-mono text-outline">
+              Master&apos;s in Design • Architecture, Interior, Furniture &amp;
+              Product Practice
+            </span>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-

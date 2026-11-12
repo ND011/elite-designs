@@ -1,709 +1,559 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Sliders,
-  Maximize2,
-  Layers,
-  CheckCircle2,
-  MoveHorizontal,
-  ShieldCheck,
-  Sparkles,
-  Ruler,
-  Package,
-} from "lucide-react";
-import { STARTER_KITS, useSpace } from "@/context/SpaceContext";
+import { STUDIO_IDENTITY, PORTFOLIO_PROJECTS, SERVICES_CATALOG } from "@/data/studioData";
 
 export default function HomePage() {
-  const [sliderPos, setSliderPos] = useState(52);
-  const { updateSpaceData } = useSpace();
-  const router = useRouter();
-
-  const handleLoadKitToBuilder = (kit) => {
-    updateSpaceData({
-      recommendedKitId: kit.id,
-      preloadedBuilderItems: kit.builderPreset,
-    });
-    router.push("/builder");
-  };
+  const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 4);
 
   return (
-    <div className="space-y-24 pb-12">
-      {/* HERO SECTION WITH INTERACTIVE BEFORE / AFTER SPATIAL SLIDER */}
-      <section className="relative border-b border-mineral-100 bg-arch-grid">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Architectural Copy */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 border border-mineral-100 bg-canvas text-xs uppercase tracking-widest text-concrete-600">
-                <Sparkles className="w-3.5 h-3.5 text-accent-brass" />
-                <span>Modular Vertical Architecture • Indian Homes</span>
-              </div>
+    <div className="flex flex-col w-full">
+      {/* 1. HERO SECTION */}
+      <section className="relative w-full -mt-20 bg-surface overflow-hidden">
+        <div className="relative w-full min-h-[900px] flex flex-col justify-between pt-28 pb-space-lg px-margin lg:px-margin-desktop">
+          {/* Background Visual — Elite Designs Curated Architecture */}
+          <div className="absolute inset-0 z-0">
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/portfolio/curated-architecture.jpg')",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/50 to-primary/30" />
+          </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-charcoal leading-[1.08]">
-                Reclaim the vertical cubic volume of your room.
-              </h1>
+          {/* Top Technical Coordinate Badge */}
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-space-sm pt-space-md text-surface-bright">
+            <div className="flex items-center gap-space-sm bg-primary/50 backdrop-blur-md px-space-md py-space-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-surface-bright animate-ping" />
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-surface-bright">
+                ELITE DESIGNS • DESIGNER + EDUCATOR
+              </span>
+            </div>
+            <div className="hidden md:flex items-center gap-space-md font-label-mono text-label-mono text-surface-bright/80 uppercase">
+              <span>Ahmedabad, Gujarat, India</span>
+              <span>/</span>
+              <span>23°01′N 72°34′E</span>
+              <span>/</span>
+              <span>Mohammadali G. Tharadara</span>
+            </div>
+          </div>
 
-              <p className="text-base sm:text-lg text-concrete-600 leading-relaxed max-w-xl">
-                Most 10×12 ft Indian rooms are{" "}
-                <span className="text-charcoal font-medium">
-                  78% saturated at floor level
-                </span>{" "}
-                by legacy steel almirahs, box diwans, and trunks—while leaving
-                over 65% of vertical headroom completely unused. Growspace
-                engineers boltless MS-tube and BWR-ply frames that bridge over
-                existing furniture without civil work.
-              </p>
-
-              {/* Primary CTAs */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href="/space-check"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-charcoal text-canvas text-xs uppercase tracking-widest font-medium hover:bg-concrete-800 transition-colors"
-                >
-                  <span>Start 8-Step Space Check</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/builder"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 border border-charcoal bg-canvas text-charcoal text-xs uppercase tracking-widest font-medium hover:bg-concrete-200/60 transition-colors"
-                >
-                  <span>Open 2D Frame Builder</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/studio"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 border border-mineral-100 bg-concrete-100/70 text-charcoal text-xs uppercase tracking-widest font-medium hover:border-charcoal transition-colors"
-                >
-                  <span>Elite Designs Studio & Portfolio</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* Architectural Telemetry Strip */}
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-mineral-100">
-                <div>
-                  <p className="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">
-                    +42 sq.ft
-                  </p>
-                  <p className="text-xs text-concrete-600">
-                    Avg. Reclaimed Surface
-                  </p>
-                </div>
-                <div>
-                  <p className="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">
-                    0 Drills
-                  </p>
-                  <p className="text-xs text-concrete-600">
-                    Compression-Jack Fit
-                  </p>
-                </div>
-                <div>
-                  <p className="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">
-                    45 Mins
-                  </p>
-                  <p className="text-xs text-concrete-600">
-                    Single-Key Assembly
-                  </p>
-                </div>
+          {/* Hero Central Typography & Official Logo Statement */}
+          <div className="relative z-10 max-w-5xl my-auto py-space-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-space-lg">
+              <img
+                src="/brand/elite-logo-full-light.png"
+                alt="Elite Designs Official Logo"
+                className="w-44 md:w-52 h-auto object-contain drop-shadow-md"
+              />
+              <div className="sm:border-l sm:border-surface-bright/30 sm:pl-6">
+                <span className="font-label-mono text-label-mono uppercase tracking-widest text-surface-bright/85 block">
+                  {STUDIO_IDENTITY.firmName} • {STUDIO_IDENTITY.founder.name}
+                </span>
+                <span className="font-headline-sm text-headline-sm text-surface-bright italic mt-1 block">
+                  “{STUDIO_IDENTITY.tagline}”
+                </span>
               </div>
             </div>
+            <h1 className="font-display text-display-mobile lg:text-display text-surface-bright tracking-tight leading-[1.05] mb-space-md">
+              {STUDIO_IDENTITY.headline}
+            </h1>
+            <p className="font-body-lg text-body-lg text-surface-bright/90 max-w-2xl font-light leading-relaxed">
+              {STUDIO_IDENTITY.supportingStatement}
+            </p>
+            {/* CTAs */}
+            <div className="mt-space-lg flex flex-wrap items-center gap-space-md">
+              <Link
+                href="/projects"
+                className="inline-flex items-center justify-center px-space-lg py-3.5 bg-surface-bright text-primary font-label-lg text-label-lg uppercase tracking-widest hover:bg-surface-container-high transition-colors shadow-sm"
+              >
+                Explore Portfolio
+                <span className="material-symbols-outlined ml-space-xs text-base">
+                  arrow_forward
+                </span>
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center px-space-lg py-3.5 bg-primary/50 text-surface-bright backdrop-blur-sm border border-surface-bright/30 font-label-lg text-label-lg uppercase tracking-widest hover:bg-primary/80 transition-colors"
+              >
+                About Founder
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-space-lg py-3.5 bg-secondary/90 text-surface-bright backdrop-blur-sm font-label-mono text-label-mono uppercase tracking-widest hover:bg-secondary transition-colors"
+              >
+                Discuss Your Project →
+              </Link>
+            </div>
+          </div>
 
-            {/* Right Interactive Before/After Spatial Comparison Slider */}
-            <div className="lg:col-span-6">
-              <div className="border border-mineral-100 bg-canvas p-3 sm:p-4 shadow-sm">
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-mineral-100 text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono uppercase tracking-wider text-concrete-600">
-                      FIG 01 // ELEVATION COMPARISON (12&apos; × 10&apos; ROOM)
-                    </span>
-                  </div>
-                  <span className="font-mono text-concrete-500">
-                    Drag slider: {sliderPos}%
-                  </span>
-                </div>
-
-                {/* Comparison Viewport */}
-                <div className="relative h-[380px] sm:h-[420px] w-full overflow-hidden border border-mineral-100 select-none bg-concrete-100">
-                  {/* AFTER LAYER (Full Background - Growspace Vertical System) */}
-                  <div className="absolute inset-0 bg-[#EFECE6] flex flex-col justify-between p-5">
-                    <div className="flex justify-between items-start">
-                      <span className="px-2.5 py-1 bg-accent-sage text-canvas text-[10px] font-mono uppercase tracking-widest">
-                        AFTER: GROWSPACE VERTICAL MATRIX (34% FLOOR CHOKE)
-                      </span>
-                      <span className="text-[11px] font-mono text-accent-sage font-semibold">
-                        +38 SQ.FT RECLAIMED
-                      </span>
-                    </div>
-
-                    {/* Architectural SVG Elevation — AFTER */}
-                    <svg
-                      viewBox="0 0 500 280"
-                      className="w-full h-64 overflow-visible"
-                    >
-                      {/* Grid Lines */}
-                      <g stroke="#D5D3CC" strokeWidth="0.6" strokeDasharray="3 3">
-                        <line x1="0" y1="40" x2="500" y2="40" />
-                        <line x1="0" y1="100" x2="500" y2="100" />
-                        <line x1="0" y1="160" x2="500" y2="160" />
-                        <line x1="0" y1="220" x2="500" y2="220" />
-                      </g>
-
-                      {/* Reclaimed Green Headroom Zone */}
-                      <rect
-                        x="30"
-                        y="25"
-                        width="440"
-                        height="85"
-                        fill="#4A6B53"
-                        fillOpacity="0.12"
-                        stroke="#4A6B53"
-                        strokeDasharray="4 4"
-                      />
-                      <text
-                        x="42"
-                        y="45"
-                        fill="#4A6B53"
-                        fontSize="10"
-                        fontFamily="monospace"
-                      >
-                        ACTIVE OVERHEAD LOFT BRIDGE (110 KG RATING)
-                      </text>
-
-                      {/* Growspace MS Tube Vertical Posts */}
-                      <rect x="45" y="20" width="6" height="240" fill="#1E1F1E" />
-                      <rect x="195" y="20" width="6" height="240" fill="#1E1F1E" />
-                      <rect x="345" y="20" width="6" height="240" fill="#1E1F1E" />
-                      <rect x="450" y="20" width="6" height="240" fill="#1E1F1E" />
-
-                      {/* Overhead BWR Ply Decks */}
-                      <rect x="45" y="55" width="411" height="8" fill="#9A7B4F" />
-                      <rect x="195" y="105" width="261" height="7" fill="#9A7B4F" />
-
-                      {/* Stored Trunks on Loft */}
-                      <rect
-                        x="65"
-                        y="28"
-                        width="70"
-                        height="27"
-                        fill="#63615A"
-                        stroke="#1E1F1E"
-                      />
-                      <rect
-                        x="145"
-                        y="32"
-                        width="42"
-                        height="23"
-                        fill="#8C8980"
-                        stroke="#1E1F1E"
-                      />
-
-                      {/* Existing Steel Almirah neatly framed */}
-                      <rect
-                        x="60"
-                        y="75"
-                        width="120"
-                        height="185"
-                        fill="#D5D3CC"
-                        stroke="#1E1F1E"
-                        strokeWidth="1.5"
-                      />
-                      <line
-                        x1="120"
-                        y1="75"
-                        x2="120"
-                        y2="260"
-                        stroke="#1E1F1E"
-                      />
-                      <text
-                        x="75"
-                        y="165"
-                        fill="#1E1F1E"
-                        fontSize="9"
-                        fontFamily="monospace"
-                      >
-                        ALMIRAH BRIDGED
-                      </text>
-
-                      {/* Cantilever Work Desk + Fluted Glass Bay */}
-                      <rect
-                        x="201"
-                        y="112"
-                        width="144"
-                        height="58"
-                        fill="#F9F9F8"
-                        stroke="#1E1F1E"
-                      />
-                      <text
-                        x="215"
-                        y="144"
-                        fill="#1E1F1E"
-                        fontSize="9"
-                        fontFamily="monospace"
-                      >
-                        FLUTED GLASS CABINET
-                      </text>
-
-                      {/* BWR Cantilever Study Surface */}
-                      <rect
-                        x="195"
-                        y="185"
-                        width="255"
-                        height="9"
-                        fill="#9A7B4F"
-                        stroke="#1E1F1E"
-                      />
-                      <text
-                        x="215"
-                        y="212"
-                        fill="#4A6B53"
-                        fontSize="10"
-                        fontFamily="monospace"
-                      >
-                        CLEAR FLOOR CIRCULATION & WORK BAY
-                      </text>
-
-                      {/* Floor Line */}
-                      <line
-                        x1="10"
-                        y1="260"
-                        x2="490"
-                        y2="260"
-                        stroke="#1E1F1E"
-                        strokeWidth="2"
-                      />
-                    </svg>
-
-                    <div className="flex justify-between text-[11px] text-concrete-600 border-t border-mineral-100 pt-2">
-                      <span>Vertical Utilization: 82%</span>
-                      <span>Boltless 25mm MS Frame + 18mm BWR Ply</span>
-                    </div>
-                  </div>
-
-                  {/* BEFORE LAYER (Clipped by sliderPos - Cluttered Floor & Unused Headroom) */}
-                  <div
-                    className="absolute inset-0 bg-[#E6E3DC] flex flex-col justify-between p-5 border-r-2 border-charcoal"
-                    style={{
-                      clipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
-                    }}
-                  >
-                    <div className="flex justify-between items-start">
-                      <span className="px-2.5 py-1 bg-accent-terracotta text-canvas text-[10px] font-mono uppercase tracking-widest">
-                        BEFORE: FLOOR CONGESTION (84% SATURATED)
-                      </span>
-                      <span className="text-[11px] font-mono text-accent-terracotta font-semibold">
-                        DEAD AIR SPACE
-                      </span>
-                    </div>
-
-                    {/* Architectural SVG Elevation — BEFORE */}
-                    <svg
-                      viewBox="0 0 500 280"
-                      className="w-full h-64 overflow-visible"
-                    >
-                      {/* Dead Vertical Volume Warning Box */}
-                      <rect
-                        x="30"
-                        y="25"
-                        width="440"
-                        height="110"
-                        fill="#B85D43"
-                        fillOpacity="0.12"
-                        stroke="#B85D43"
-                        strokeDasharray="4 4"
-                      />
-                      <text
-                        x="130"
-                        y="75"
-                        fill="#B85D43"
-                        fontSize="11"
-                        fontFamily="monospace"
-                      >
-                        68% UNUSED VERTICAL HEADROOM (DEAD VOLUME)
-                      </text>
-
-                      {/* Bulky Almirah */}
-                      <rect
-                        x="45"
-                        y="85"
-                        width="125"
-                        height="175"
-                        fill="#B8B5AC"
-                        stroke="#1E1F1E"
-                        strokeWidth="1.5"
-                      />
-                      <text
-                        x="62"
-                        y="175"
-                        fill="#1E1F1E"
-                        fontSize="9"
-                        fontFamily="monospace"
-                      >
-                        STEEL ALMIRAH
-                      </text>
-
-                      {/* Metal Trunk on Floor */}
-                      <rect
-                        x="180"
-                        y="210"
-                        width="85"
-                        height="50"
-                        fill="#8C8980"
-                        stroke="#1E1F1E"
-                      />
-                      <text
-                        x="192"
-                        y="240"
-                        fill="#F3F3F1"
-                        fontSize="8"
-                        fontFamily="monospace"
-                      >
-                        METAL PETI
-                      </text>
-
-                      {/* Plastic Drawers */}
-                      <rect
-                        x="275"
-                        y="165"
-                        width="60"
-                        height="95"
-                        fill="#C4C1B8"
-                        stroke="#1E1F1E"
-                      />
-                      <text
-                        x="282"
-                        y="215"
-                        fill="#1E1F1E"
-                        fontSize="8"
-                        fontFamily="monospace"
-                      >
-                        PLASTIC
-                      </text>
-
-                      {/* Box Diwan sprawling across floor */}
-                      <rect
-                        x="345"
-                        y="195"
-                        width="135"
-                        height="65"
-                        fill="#B85D43"
-                        fillOpacity="0.3"
-                        stroke="#B85D43"
-                        strokeWidth="1.5"
-                      />
-                      <text
-                        x="362"
-                        y="232"
-                        fill="#1E1F1E"
-                        fontSize="9"
-                        fontFamily="monospace"
-                      >
-                        DIWAN CHOKE ZONE
-                      </text>
-
-                      {/* Floor Line */}
-                      <line
-                        x1="10"
-                        y1="260"
-                        x2="490"
-                        y2="260"
-                        stroke="#1E1F1E"
-                        strokeWidth="2"
-                      />
-                    </svg>
-
-                    <div className="flex justify-between text-[11px] text-concrete-600 border-t border-mineral-100 pt-2">
-                      <span>Floor Choke Points: 3 Critical</span>
-                      <span>Zero Vertical Integration</span>
-                    </div>
-                  </div>
-
-                  {/* Interactive Range Input Overlay */}
-                  <input
-                    type="range"
-                    min="5"
-                    max="95"
-                    value={sliderPos}
-                    onChange={(e) => setSliderPos(Number(e.target.value))}
-                    aria-label="Compare Before and After Spatial Elevation"
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
-                  />
-
-                  {/* Visual Handle */}
-                  <div
-                    className="absolute top-0 bottom-0 w-0.5 bg-charcoal pointer-events-none z-10"
-                    style={{ left: `${sliderPos}%` }}
-                  >
-                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 bg-charcoal text-canvas flex items-center justify-center border border-canvas shadow-md">
-                      <MoveHorizontal className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Slider Quick Toggles */}
-                <div className="mt-3 flex items-center justify-between text-xs text-concrete-600">
-                  <button
-                    type="button"
-                    onClick={() => setSliderPos(85)}
-                    className="underline underline-offset-4 hover:text-charcoal"
-                  >
-                    View Legacy Floor Clutter
-                  </button>
-                  <span className="font-mono text-[11px]">
-                    Slide horizontally to inspect vertical frame intervention
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setSliderPos(15)}
-                    className="underline underline-offset-4 hover:text-charcoal"
-                  >
-                    View Growspace Frame
-                  </button>
-                </div>
+          {/* Bottom Hero Footnote & Micro-specs Bar */}
+          <div className="relative z-10 pt-space-md border-t border-surface-bright/20 flex flex-col md:flex-row md:items-end justify-between gap-space-md text-surface-bright">
+            <div className="flex flex-col gap-0.5">
+              <span className="font-label-mono text-label-mono text-surface-bright/60 uppercase">
+                Principal Founder
+              </span>
+              <span className="font-headline-sm text-headline-sm tracking-tight text-surface-bright">
+                {STUDIO_IDENTITY.founder.name}
+              </span>
+              <span className="font-body-sm text-body-sm text-surface-bright/80">
+                {STUDIO_IDENTITY.founder.credentials}
+              </span>
+            </div>
+            <div className="flex items-center gap-space-lg">
+              <div className="hidden sm:flex flex-col text-right">
+                <span className="font-label-mono text-label-mono text-surface-bright/60 uppercase">
+                  Specialisation
+                </span>
+                <span className="font-label-mono text-label-mono uppercase text-surface-bright">
+                  Architecture • Interiors • Furniture • Products
+                </span>
+              </div>
+              <div className="flex items-center gap-space-xs text-surface-bright/80 font-label-mono text-label-mono uppercase animate-bounce">
+                <span>Scroll</span>
+                <span className="material-symbols-outlined text-sm">
+                  arrow_downward
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3-STEP GROWSPACE METHODOLOGY SECTION (VALUE PILLARS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <div>
-            <p className="text-xs font-mono uppercase tracking-widest text-concrete-500 mb-2">
-              ARCHITECTURAL METHODOLOGY
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-              Three steps from congested room to modular clarity.
-            </h2>
+      {/* 2. STUDIO INTRODUCTION & METRICS */}
+      <section className="w-full bg-surface py-space-2xl px-margin lg:px-margin-desktop">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-baseline">
+            <div className="lg:col-span-3">
+              <div className="flex items-center gap-space-xs text-secondary mb-space-sm">
+                <span className="font-label-mono text-label-mono uppercase tracking-widest">
+                  [ 01 / Brand Philosophy ]
+                </span>
+              </div>
+              <p className="font-label-mono text-label-mono uppercase text-outline">
+                {STUDIO_IDENTITY.founder.location}
+              </p>
+            </div>
+            <div className="lg:col-span-9 space-y-space-md">
+              <p className="font-display text-headline-lg-mobile lg:text-headline-lg text-on-surface leading-[1.12] tracking-tight">
+                {STUDIO_IDENTITY.philosophy}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg pt-space-md">
+                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                  <strong>Mission:</strong> {STUDIO_IDENTITY.mission}
+                </p>
+                <p className="font-body-md text-body-md text-secondary leading-relaxed">
+                  <strong>Vision:</strong> {STUDIO_IDENTITY.vision}
+                </p>
+              </div>
+            </div>
           </div>
-          <Link
-            href="/materials"
-            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest font-medium text-charcoal hover:underline underline-offset-4"
-          >
-            <span>Explore Material Engineering</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              step: "PILLAR 01",
-              title: "Spatial Choke-Point Audit",
-              desc: "We map your existing Indian household inventory—steel almirahs, box diwans, folding khats, and metal trunks—to quantify exact door-swing conflicts and dead vertical headroom.",
-              metric: "8-Step Diagnostic Engine",
-              href: "/space-check",
-              cta: "Run Room Audit",
-              icon: Sliders,
-            },
-            {
-              step: "PILLAR 02",
-              title: "Exoskeletal MS + BWR Bridging",
-              desc: "Instead of discarding heavy heirloom furniture, our 25mm powder-coated MS square tubes straddle existing pieces—creating overhead loft decks and cantilevered work bays.",
-              metric: "240 kg Safe Frame Load",
-              href: "/materials",
-              cta: "Inspect Joinery",
-              icon: Layers,
-            },
-            {
-              step: "PILLAR 03",
-              title: "Snap-to-Grid 2D Frame Planner",
-              desc: "Configure posts, BWR marine ply decks, and 5mm fluted glass privacy screens on a 300mm architectural grid with live INR budgeting and part-by-part BOM generation.",
-              metric: "Live INR Cost & Load Counter",
-              href: "/builder",
-              cta: "Open 2D Builder",
-              icon: Maximize2,
-            },
-          ].map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <div
-                key={pillar.step}
-                className="border border-mineral-100 bg-concrete-50/60 p-7 flex flex-col justify-between hover:border-charcoal transition-colors"
+          {/* Architectural Tabular Metrics Grid */}
+          <div className="mt-space-2xl pt-space-lg border-t border-surface-container-highest grid grid-cols-2 md:grid-cols-4 gap-gutter">
+            <div className="flex flex-col space-y-space-xs pr-space-md">
+              <span className="font-display text-headline-lg text-primary leading-none">
+                06
+              </span>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-on-surface">
+                Core Disciplines
+              </span>
+              <p className="font-body-sm text-body-sm text-secondary">
+                Architecture, Interior Architecture, Furniture, Product Design,
+                Spatial Exhibitions, and Consultancy.
+              </p>
+            </div>
+            <div className="flex flex-col space-y-space-xs pr-space-md">
+              <span className="font-display text-headline-lg text-primary leading-none">
+                M.Des
+              </span>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-on-surface">
+                Research &amp; Practice
+              </span>
+              <p className="font-body-sm text-body-sm text-secondary">
+                Led by {STUDIO_IDENTITY.founder.name}, combining master&apos;s
+                design research, retail practice, and academic teaching.
+              </p>
+            </div>
+            <div className="flex flex-col space-y-space-xs pr-space-md">
+              <span className="font-display text-headline-lg text-primary leading-none">
+                1:1
+              </span>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-on-surface">
+                Prototyping Rigor
+              </span>
+              <p className="font-body-sm text-body-sm text-secondary">
+                Every spatial system, modular frame, and product mechanism is
+                validated through physical mockups and technical drawings.
+              </p>
+            </div>
+            <div className="flex flex-col space-y-space-xs">
+              <span className="font-display text-headline-lg text-primary leading-none">
+                100%
+              </span>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-on-surface">
+                Material Honesty
+              </span>
+              <p className="font-body-sm text-body-sm text-secondary">
+                Authentic BWR marine timber, powder-coated mild steel, natural
+                stone, and fluted glass without artificial ornament.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. FEATURED PROJECTS (ELITE DESIGNS PORTFOLIO BOARDS) */}
+      <section className="w-full bg-surface-container-low py-space-2xl px-margin lg:px-margin-desktop">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-space-lg mb-space-lg border-b border-surface-container-highest gap-space-md">
+            <div>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-secondary">
+                [ 02 / Selected Portfolio ]
+              </span>
+              <h2 className="font-display text-headline-lg text-on-surface tracking-tight mt-1">
+                Featured Works
+              </h2>
+            </div>
+            <div className="flex items-center gap-space-md">
+              <span className="font-label-mono text-label-mono text-secondary uppercase">
+                Showing 04 of {PORTFOLIO_PROJECTS.length} Case Studies
+              </span>
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1 font-label-lg text-label-lg uppercase tracking-wider text-primary hover:text-secondary transition-colors underline underline-offset-4"
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-widest text-concrete-500">
-                      {pillar.step}
-                    </span>
-                    <div className="w-9 h-9 border border-mineral-100 bg-canvas flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-charcoal" />
-                    </div>
+                View Complete Portfolio
+                <span className="material-symbols-outlined text-sm">
+                  arrow_outward
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Project Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="group flex flex-col cursor-pointer bg-surface p-space-md transition-all duration-300 hover:bg-surface-container-lowest"
+              >
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-surface-container-high mb-space-md">
+                  <img
+                    src={project.coverImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  />
+                  <div className="absolute top-space-sm left-space-sm bg-surface/90 backdrop-blur-sm px-space-sm py-1 font-label-mono text-label-mono uppercase text-on-surface">
+                    {project.category}
                   </div>
-                  <h3 className="font-serif text-2xl text-charcoal">
-                    {pillar.title}
+                </div>
+                <div className="flex items-start justify-between gap-space-sm pt-space-xs border-t border-surface-container-highest">
+                  <div>
+                    <span className="font-label-mono text-label-mono uppercase text-secondary">
+                      {project.location} • {project.year}
+                    </span>
+                    <h3 className="font-headline-sm text-headline-sm text-on-surface mt-1 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                      {project.brief}
+                    </p>
+                  </div>
+                  <span className="shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-surface-container group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                    <span className="material-symbols-outlined text-base">
+                      arrow_forward
+                    </span>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SERVICES OVERVIEW (6 ELITE DESIGNS DISCIPLINES) */}
+      <section className="w-full bg-surface py-space-2xl px-margin lg:px-margin-desktop">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-space-xl">
+            <span className="font-label-mono text-label-mono uppercase tracking-widest text-secondary">
+              [ 03 / Disciplines ]
+            </span>
+            <h2 className="font-display text-headline-lg text-on-surface tracking-tight mt-1">
+              What Clients Hire Elite Designs For
+            </h2>
+            <p className="font-body-md text-body-md text-secondary max-w-2xl mt-space-xs">
+              Six specialized design disciplines spanning spatial architecture,
+              interior environments, modular furniture, and industrial product
+              prototyping.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+            {SERVICES_CATALOG.map((service) => (
+              <div
+                key={service.id}
+                className="flex flex-col justify-between bg-surface-container-low p-space-lg group hover:bg-surface-container transition-colors"
+              >
+                <div>
+                  <span className="font-label-mono text-label-mono text-secondary">
+                    {service.number} // {service.subtitle}
+                  </span>
+                  <h3 className="font-headline-sm text-headline-sm text-on-surface mt-space-sm mb-space-xs">
+                    {service.title}
                   </h3>
-                  <p className="text-sm text-concrete-600 leading-relaxed">
-                    {pillar.desc}
+                  <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+                    {service.summary}
                   </p>
                 </div>
-
-                <div className="pt-6 mt-6 border-t border-mineral-100 flex items-center justify-between">
-                  <span className="text-xs font-mono text-concrete-600">
-                    {pillar.metric}
+                <div className="pt-space-md border-t border-surface-container-highest flex items-center justify-between">
+                  <span className="font-label-mono text-label-mono uppercase text-secondary">
+                    Deliverables Included
                   </span>
                   <Link
-                    href={pillar.href}
-                    className="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-semibold text-charcoal hover:underline underline-offset-4"
+                    href="/services"
+                    className="font-label-lg text-label-lg uppercase tracking-wider text-primary group-hover:underline"
                   >
-                    <span>{pillar.cta}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    Explore →
                   </Link>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CURATED STARTER KIT PREVIEW GRID WITH PRICES IN INR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <div>
-            <p className="text-xs font-mono uppercase tracking-widest text-concrete-500 mb-2">
-              PRE-ENGINEERED ARCHITECTURAL ASSEMBLIES
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-              Curated Starter Kits (INR Pricing)
-            </h2>
-          </div>
-          <p className="text-sm text-concrete-600 max-w-md">
-            Every starter kit ships flat-packed with an Allen hex torque key,
-            leveling brass feet, and 1-click loading into our 2D customization
-            grid.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {STARTER_KITS.map((kit, idx) => (
-            <div
-              key={kit.id}
-              className="border border-mineral-100 bg-canvas flex flex-col justify-between hover:border-charcoal transition-all"
-            >
-              <div>
-                {/* Schematic Header */}
-                <div className="p-6 border-b border-mineral-100 bg-concrete-100/70">
-                  <div className="flex items-center justify-between text-xs font-mono text-concrete-600 mb-3">
-                    <span>ASSEMBLY 0{idx + 1}</span>
-                    <span>{kit.footprint}</span>
-                  </div>
-
-                  {/* Mini Architectural Isometric/Elevation Wireframe */}
-                  <div className="h-36 border border-mineral-100 bg-canvas p-3 flex items-center justify-center">
-                    <svg viewBox="0 0 240 100" className="w-full h-full">
-                      <line
-                        x1="15"
-                        y1="88"
-                        x2="225"
-                        y2="88"
-                        stroke="#1E1F1E"
-                        strokeWidth="1.5"
-                      />
-                      {/* Vertical posts */}
-                      <rect x="35" y="12" width="4" height="76" fill="#1E1F1E" />
-                      <rect x="118" y="12" width="4" height="76" fill="#1E1F1E" />
-                      <rect x="200" y="12" width="4" height="76" fill="#1E1F1E" />
-                      {/* Overhead Loft */}
-                      <rect x="35" y="22" width="169" height="5" fill="#9A7B4F" />
-                      {/* Mid work surface */}
-                      <rect
-                        x="35"
-                        y="55"
-                        width={idx === 0 ? "90" : "169"}
-                        height="5"
-                        fill="#9A7B4F"
-                      />
-                      {/* Fluted glass infill representation */}
-                      <rect
-                        x="122"
-                        y="27"
-                        width="78"
-                        height="28"
-                        fill="#D5D3CC"
-                        fillOpacity="0.6"
-                        stroke="#1E1F1E"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Kit Details */}
-                <div className="p-6 space-y-4">
-                  <div className="flex items-baseline justify-between gap-2">
-                    <h3 className="font-serif text-2xl text-charcoal">
-                      {kit.name}
-                    </h3>
-                  </div>
-
-                  <p className="text-sm text-concrete-600 leading-relaxed">
-                    {kit.tagline}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
-                    <div className="p-2.5 border border-mineral-100 bg-concrete-50">
-                      <span className="text-concrete-500 block">Max Load</span>
-                      <span className="font-mono font-semibold text-charcoal">
-                        {kit.loadCapacityKg} kg UDL
-                      </span>
-                    </div>
-                    <div className="p-2.5 border border-mineral-100 bg-concrete-50">
-                      <span className="text-concrete-500 block">Modular Parts</span>
-                      <span className="font-mono font-semibold text-charcoal">
-                        {kit.partsCount} Components
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5 pt-2">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-concrete-500">
-                      Included Material Spec:
-                    </p>
-                    {kit.materials.map((mat) => (
-                      <div
-                        key={mat}
-                        className="flex items-center gap-2 text-xs text-concrete-800"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-accent-sage shrink-0" />
-                        <span>{mat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Price & Builder Action Footer */}
-              <div className="p-6 border-t border-mineral-100 bg-concrete-50/60 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-concrete-500 block">
-                    Complete Kit Price
-                  </span>
-                  <span className="font-serif text-2xl font-semibold text-charcoal">
-                    ₹{kit.priceINR.toLocaleString("en-IN")}
-                  </span>
-                  <span className="text-[11px] text-concrete-500 ml-1">
-                    incl. GST
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => handleLoadKitToBuilder(kit)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-charcoal text-canvas text-xs uppercase tracking-widest font-medium hover:bg-concrete-800 transition-colors"
+      {/* 5. DESIGN PHILOSOPHY & CORE VALUES */}
+      <section className="w-full bg-surface-container py-space-2xl px-margin lg:px-margin-desktop">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+          {/* Left Column: Values */}
+          <div className="lg:col-span-6 space-y-space-xl">
+            <div>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-secondary">
+                [ 04 / Studio Ethos ]
+              </span>
+              <h2 className="font-display text-headline-lg text-on-surface tracking-tight mt-1">
+                Core Design Values
+              </h2>
+            </div>
+            <div className="space-y-space-lg">
+              {STUDIO_IDENTITY.values.map((val, idx) => (
+                <div
+                  key={val.title}
+                  className={`border-l-2 ${
+                    idx === 0 ? "border-primary" : "border-outline-variant"
+                  } pl-space-md space-y-1`}
                 >
-                  <span>Load in Builder</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </button>
+                  <h4 className="font-headline-sm text-headline-sm text-on-surface">
+                    {val.title}
+                  </h4>
+                  <p className="font-body-md text-body-md text-on-surface-variant">
+                    {val.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="pt-space-sm">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-space-xs font-label-lg text-label-lg uppercase tracking-widest text-primary hover:text-secondary transition-colors underline underline-offset-4"
+              >
+                Read Founder Profile &amp; Story
+                <span className="material-symbols-outlined text-sm">
+                  menu_book
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Elite Designs Visual Vignettes */}
+          <div className="lg:col-span-6 grid grid-cols-2 gap-space-md">
+            <div className="space-y-space-md">
+              <div className="aspect-[4/5] bg-surface-container-high overflow-hidden">
+                <img
+                  className="w-full h-full object-cover"
+                  alt="Daylight & Optical Spatial Research"
+                  src="/portfolio/daylight-spatial-research.jpg"
+                />
+              </div>
+              <div className="p-space-sm bg-surface">
+                <span className="font-label-mono text-label-mono uppercase text-secondary">
+                  Study 01 //
+                </span>
+                <p className="font-body-sm text-body-sm text-on-surface mt-1">
+                  Heliostatic Daylight &amp; Optical Section Study.
+                </p>
               </div>
             </div>
-          ))}
+            <div className="space-y-space-md pt-space-xl">
+              <div className="aspect-[4/5] bg-surface-container-high overflow-hidden">
+                <img
+                  className="w-full h-full object-cover"
+                  alt="1:1 Product Prototyping & Ergonomics"
+                  src="/portfolio/product-prototyping-board.jpg"
+                />
+              </div>
+              <div className="p-space-sm bg-surface">
+                <span className="font-label-mono text-label-mono uppercase text-secondary">
+                  Study 02 //
+                </span>
+                <p className="font-body-sm text-body-sm text-on-surface mt-1">
+                  Iterative Physical Mockups &amp; Mechanism Validation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. SELECTED WORKS INDEX (ELITE DESIGNS PROJECT REGISTER) */}
+      <section className="w-full bg-surface py-space-2xl px-margin lg:px-margin-desktop">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-space-md border-b border-surface-container-highest gap-space-sm">
+            <div>
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-secondary">
+                [ 05 / Register ]
+              </span>
+              <h2 className="font-display text-headline-lg text-on-surface tracking-tight mt-1">
+                Selected Works Chronology
+              </h2>
+            </div>
+            <div className="font-label-mono text-label-mono text-secondary uppercase">
+              Elite Designs Portfolio Index
+            </div>
+          </div>
+
+          <div className="w-full mt-space-md divide-y divide-surface-container-highest font-body-sm text-body-sm">
+            <div className="hidden md:grid grid-cols-12 py-space-sm text-secondary font-label-mono text-label-mono uppercase tracking-widest">
+              <div className="col-span-1">Year</div>
+              <div className="col-span-2">Discipline</div>
+              <div className="col-span-4">Project &amp; Scope</div>
+              <div className="col-span-3">Context</div>
+              <div className="col-span-2 text-right">Status</div>
+            </div>
+
+            {PORTFOLIO_PROJECTS.map((proj) => (
+              <Link
+                key={proj.slug}
+                href={`/projects/${proj.slug}`}
+                className="group grid grid-cols-1 md:grid-cols-12 py-space-md items-center hover:bg-surface-container-low transition-colors px-space-xs cursor-pointer"
+              >
+                <div className="col-span-1 font-label-mono text-label-mono text-secondary">
+                  {proj.year}
+                </div>
+                <div className="col-span-2 font-label-mono text-label-mono text-outline">
+                  {proj.category}
+                </div>
+                <div className="col-span-4 pr-space-md">
+                  <span className="font-headline-sm text-headline-sm text-on-surface block group-hover:text-primary">
+                    {proj.title}
+                  </span>
+                  <span className="text-secondary text-body-sm">
+                    {proj.area}
+                  </span>
+                </div>
+                <div className="col-span-3 text-on-surface-variant">
+                  {proj.location}
+                </div>
+                <div className="col-span-2 text-left md:text-right mt-space-xs md:mt-0">
+                  <span className="inline-block px-space-xs py-0.5 bg-primary text-on-primary font-label-mono text-label-mono uppercase">
+                    {proj.status}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-space-lg flex justify-center">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-space-lg py-3 border border-on-surface text-on-surface font-label-lg text-label-lg uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors"
+            >
+              Open Full Portfolio Gallery ({PORTFOLIO_PROJECTS.length} Works)
+              <span className="material-symbols-outlined text-sm">
+                database
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. CONTACT / COMMISSION CALL-TO-ACTION */}
+      <section className="w-full bg-primary text-on-primary py-space-2xl px-margin lg:px-margin-desktop">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+            <div className="lg:col-span-8 space-y-space-md">
+              <span className="font-label-mono text-label-mono uppercase tracking-widest text-on-primary-container">
+                [ Start a Project with Elite Designs ]
+              </span>
+              <h2 className="font-display text-headline-lg lg:text-display text-surface-bright tracking-tight leading-[1.05]">
+                Have an upcoming interior, furniture, architectural, or product
+                project?
+              </h2>
+              <p className="font-body-lg text-body-lg text-inverse-primary max-w-2xl font-light">
+                We collaborate with homeowners, commercial businesses, property
+                developers, and furniture brands seeking thoughtful, research-led
+                design execution.
+              </p>
+              <div className="pt-space-md flex flex-wrap items-center gap-space-md">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-space-lg py-4 bg-surface-bright text-primary font-label-lg text-label-lg uppercase tracking-widest hover:bg-secondary-fixed transition-colors"
+                >
+                  Start a Project
+                  <span className="material-symbols-outlined ml-space-xs text-base">
+                    east
+                  </span>
+                </Link>
+                <a
+                  className="font-label-mono text-label-mono uppercase tracking-widest text-surface-bright underline underline-offset-8 hover:text-secondary-fixed transition-colors"
+                  href={`mailto:${STUDIO_IDENTITY.founder.email}`}
+                >
+                  {STUDIO_IDENTITY.founder.email}
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col justify-between pt-space-lg lg:pt-0 lg:pl-space-lg border-t lg:border-t-0 lg:border-l border-outline-variant/30">
+              <div className="space-y-space-md">
+                <div className="space-y-1">
+                  <span className="font-label-mono text-label-mono text-on-primary-container uppercase">
+                    Principal Designer
+                  </span>
+                  <p className="font-body-sm text-body-sm text-surface-bright">
+                    {STUDIO_IDENTITY.founder.name}
+                    <br />
+                    {STUDIO_IDENTITY.founder.role}
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <span className="font-label-mono text-label-mono text-on-primary-container uppercase">
+                    Studio Coordinates
+                  </span>
+                  <p className="font-body-sm text-body-sm text-surface-bright">
+                    {STUDIO_IDENTITY.founder.location}
+                    <br />
+                    Direct Line: {STUDIO_IDENTITY.founder.phone}
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <span className="font-label-mono text-label-mono text-on-primary-container uppercase">
+                    Service Coverage
+                  </span>
+                  <p className="font-body-sm text-body-sm text-surface-bright">
+                    {STUDIO_IDENTITY.founder.serviceRegions}
+                  </p>
+                </div>
+              </div>
+              <div className="pt-space-md">
+                <span className="font-label-mono text-label-mono text-on-primary-container block">
+                  Instagram: {STUDIO_IDENTITY.founder.instagram}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   );
 }
-

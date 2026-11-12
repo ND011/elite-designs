@@ -3,173 +3,173 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Compass,
-  Grid,
-  Layers,
-  Activity,
-  Sliders,
-  Menu,
-  X,
-  ArrowUpRight,
-  Briefcase,
-  FolderKanban,
-} from "lucide-react";
-import { useSpace } from "@/context/SpaceContext";
 
-const NAV_ROUTES = [
-  { href: "/", label: "Home", step: "01", icon: Compass },
-  { href: "/space-check", label: "Space Check", step: "02", icon: Sliders },
-  { href: "/diagnosis", label: "Diagnosis", step: "03", icon: Activity },
-  { href: "/materials", label: "Materials", step: "04", icon: Layers },
-  { href: "/builder", label: "Builder", step: "05", icon: Grid },
-  { href: "/projects", label: "Portfolio", step: "06", icon: FolderKanban },
-  { href: "/studio", label: "Studio", step: "07", icon: Briefcase },
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/services", label: "Services" },
+  { href: "/journal", label: "Journal" },
+  { href: "/contact", label: "Contact" },
+];
+
+const TOOL_LINKS = [
+  { href: "/space-check", label: "01. Space Check" },
+  { href: "/diagnosis", label: "02. Diagnosis" },
+  { href: "/materials", label: "03. Material Lab" },
+  { href: "/builder", label: "04. 2D Frame Builder" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { metrics } = useSpace();
 
   return (
-    <header className="sticky top-0 z-50 bg-canvas/95 backdrop-blur-md border-b border-mineral-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 border border-charcoal flex items-center justify-center bg-concrete-200/50 group-hover:bg-charcoal group-hover:text-canvas transition-colors">
-              <span className="font-serif text-xl font-semibold tracking-tighter">
-                G
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-b border-surface-container-highest transition-colors duration-200">
+      <div className="h-20 w-full px-margin lg:px-margin-desktop flex items-center justify-between gap-gutter">
+        {/* Brand Identity — Crisp Tightly-Cropped Transparent Emblem */}
+        <div className="flex items-center gap-space-md shrink-0">
+          <Link
+            href="/"
+            className="flex items-center gap-3.5 group focus:outline-none"
+          >
+            <img
+              alt="Elite Designs Official Emblem"
+              className="h-14 w-14 object-contain transition-transform duration-300 group-hover:scale-105"
+              src="/brand/elite-emblem-dark.png"
+            />
+            <span className="flex flex-col">
+              <span className="font-display text-xl md:text-2xl uppercase tracking-[0.18em] text-on-surface font-medium leading-none">
+                ELITE DESIGNS
               </span>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-serif text-2xl tracking-tight font-semibold text-charcoal">
-                  GROWSPACE
-                </span>
-                <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 border border-mineral-100 text-concrete-600 bg-concrete-200/40">
-                  SYS 2.4
-                </span>
-              </div>
-              <p className="text-[11px] text-concrete-600 tracking-wide">
-                Modular Spatial Architecture • Elite Designs Studio
-              </p>
-            </div>
+              <span className="font-label-mono text-label-mono uppercase text-secondary tracking-[0.2em] mt-1">
+                Mohammadali G. Tharadara
+              </span>
+            </span>
           </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
-            {NAV_ROUTES.map((route) => {
-              const Icon = route.icon;
-              const isActive =
-                route.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(route.href);
-
-              return (
-                <Link
-                  key={route.href}
-                  href={route.href}
-                  className={`px-3.5 py-2 text-sm transition-all flex items-center gap-2 border ${
-                    isActive
-                      ? "bg-charcoal text-canvas border-charcoal font-medium"
-                      : "border-transparent text-concrete-800 hover:border-mineral-100 hover:bg-concrete-200/40"
-                  }`}
-                >
-                  <span
-                    className={`text-[10px] font-mono ${
-                      isActive ? "text-concrete-300" : "text-concrete-500"
-                    }`}
-                  >
-                    {route.step}
-                  </span>
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{route.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Right Live Status Pill & Action */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="/space-check"
-              className="flex items-center gap-2.5 px-3 py-1.5 border border-mineral-100 bg-concrete-50/70 text-xs"
-              title="Live Spatial Saturation Index from your room profile"
-            >
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  metrics.saturationPercent > 70
-                    ? "bg-accent-terracotta animate-pulse"
-                    : "bg-accent-sage"
-                }`}
-              />
-              <span className="text-concrete-600">Floor Density:</span>
-              <span className="font-mono font-semibold text-charcoal">
-                {metrics.saturationPercent}%
-              </span>
-            </Link>
-
-            <Link
-              href="/builder"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs uppercase tracking-widest font-medium bg-charcoal text-canvas hover:bg-concrete-800 transition-colors"
-            >
-              <span>Launch 2D Planner</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Mobile Hamburger Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 border border-mineral-100 text-charcoal hover:bg-concrete-200/50"
-              aria-label="Toggle Menu"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <div className="md:hidden border-t border-mineral-100 bg-canvas px-4 pt-3 pb-6 space-y-2">
-          {NAV_ROUTES.map((route) => {
-            const Icon = route.icon;
+        {/* Primary Stitch Navigation */}
+        <nav className="hidden xl:flex items-center gap-space-lg">
+          {NAV_LINKS.map((item) => {
             const isActive =
-              route.href === "/"
+              item.href === "/"
                 ? pathname === "/"
-                : pathname.startsWith(route.href);
+                : pathname.startsWith(item.href);
             return (
               <Link
-                key={route.href}
-                href={route.href}
-                onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-between px-4 py-3 border ${
+                key={item.href}
+                href={item.href}
+                className={`relative py-1 font-label-lg text-label-lg uppercase tracking-widest transition-colors after:absolute after:bottom-0 after:left-0 after:h-px after:bg-primary after:transition-all after:duration-300 ${
                   isActive
-                    ? "bg-charcoal text-canvas border-charcoal"
-                    : "border-mineral-100 text-charcoal bg-concrete-50/40"
+                    ? "text-primary font-bold after:w-full"
+                    : "text-on-surface-variant hover:text-on-surface after:w-0 hover:after:w-full"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono opacity-60">{route.step}</span>
-                  <Icon className="w-4 h-4" />
-                  <span className="font-medium text-sm">{route.label}</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 opacity-60" />
+                {item.label}
               </Link>
             );
           })}
-          <div className="pt-2 flex items-center justify-between text-xs px-2 text-concrete-600">
-            <span>Current Room Saturation: {metrics.saturationPercent}%</span>
-            <span>Area: {metrics.roomArea} sq.ft</span>
+
+          {/* Spatial Planner Tools Dropdown */}
+          <div className="relative group">
+            <button
+              type="button"
+              className="flex items-center gap-1 py-1 font-label-mono text-label-mono uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+            >
+              <span>[Growspace Lab]</span>
+              <span className="material-symbols-outlined text-xs">
+                expand_more
+              </span>
+            </button>
+            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 top-full pt-2 w-52">
+              <div className="bg-surface border border-surface-container-highest shadow-lg p-space-xs flex flex-col">
+                {TOOL_LINKS.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="px-space-sm py-2 font-label-mono text-label-mono uppercase text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors"
+                  >
+                    {tool.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {/* Right Coordinate & CTA */}
+        <div className="flex items-center gap-space-md shrink-0">
+          <div className="hidden md:flex flex-col text-right pr-space-sm border-r border-surface-container-highest">
+            <span className="font-label-mono text-label-mono text-secondary uppercase">
+              AHMEDABAD, INDIA
+            </span>
+            <span className="font-label-mono text-label-mono text-outline">
+              23°01′N 72°34′E
+            </span>
+          </div>
+          <Link
+            href="/contact"
+            className="hidden sm:inline-flex items-center justify-center px-space-md py-2 rounded-full bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider hover:bg-inverse-surface hover:text-inverse-on-surface transition-colors duration-200"
+          >
+            Start a Project
+          </Link>
+          <Link href="/about" className="flex items-center pl-space-xs">
+            <img
+              alt="Mohammadali G. Tharadara"
+              className="w-10 h-10 rounded-full object-cover object-top border border-surface-container-highest"
+              src="/brand/founder-portrait.jpg"
+            />
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="xl:hidden p-1.5 text-on-surface hover:bg-surface-container-low"
+            aria-label="Toggle Menu"
+          >
+            <span className="material-symbols-outlined">
+              {mobileOpen ? "close" : "menu"}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileOpen && (
+        <div className="xl:hidden bg-surface border-b border-surface-container-highest px-margin py-space-md space-y-space-md">
+          <div className="grid grid-cols-2 gap-2">
+            {NAV_LINKS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="py-2 px-3 bg-surface-container-low font-label-lg text-label-lg uppercase tracking-widest text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="pt-2 border-t border-surface-container-highest">
+            <span className="font-label-mono text-label-mono uppercase text-secondary block mb-2">
+              Growspace Interactive Tools
+            </span>
+            <div className="grid grid-cols-2 gap-2">
+              {TOOL_LINKS.map((tool) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-1.5 px-2 bg-surface-container font-label-mono text-label-mono uppercase text-on-surface-variant hover:text-primary"
+                >
+                  {tool.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}
     </header>
   );
 }
-

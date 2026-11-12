@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +8,56 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Stitch Project 3055648139939892831 Tokens
+        "on-tertiary": "#ffffff",
+        "inverse-primary": "#c8c6c5",
+        secondary: "#665d55",
+        "on-error": "#ffffff",
+        "secondary-container": "#eaddd4",
+        "primary-fixed": "#e5e2e1",
+        "outline-variant": "#c4c7c7",
+        primary: "#000000",
+        "on-secondary": "#ffffff",
+        "surface-bright": "#faf9f7",
+        "secondary-fixed": "#ede0d7",
+        "inverse-surface": "#2f3130",
+        "on-tertiary-fixed-variant": "#4a463f",
+        "primary-fixed-dim": "#c8c6c5",
+        "surface-container": "#efeeec",
+        "surface-tint": "#5f5e5e",
+        surface: "#faf9f7",
+        "primary-container": "#1c1b1b",
+        "inverse-on-surface": "#f1f1ef",
+        "tertiary-fixed": "#e9e1d8",
+        "on-surface": "#1a1c1b",
+        "on-error-container": "#93000a",
+        "tertiary-container": "#1e1b15",
+        background: "#faf9f7",
+        "on-primary-fixed-variant": "#474746",
+        "on-primary-container": "#858383",
+        error: "#ba1a1a",
+        tertiary: "#000000",
+        "surface-dim": "#dadad8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e9e8e6",
+        "surface-container-low": "#f4f3f1",
+        "on-secondary-fixed-variant": "#4d453f",
+        outline: "#747878",
+        "secondary-fixed-dim": "#d0c4bb",
+        "tertiary-fixed-dim": "#ccc5bc",
+        "on-primary-fixed": "#1c1b1b",
+        "surface-container-highest": "#e3e2e0",
+        "on-tertiary-fixed": "#1e1b15",
+        "on-surface-variant": "#444748",
+        "on-background": "#1a1c1b",
+        "surface-variant": "#e3e2e0",
+        "surface-container-lowest": "#ffffff",
+        "on-secondary-fixed": "#201a15",
+        "error-container": "#ffdad6",
+        "on-tertiary-container": "#88837b",
+        "on-secondary-container": "#6a615a",
+
+        // Legacy / Growspace Tool Tokens
         canvas: "#F3F3F1",
         concrete: {
           50: "#F9F9F8",
@@ -34,12 +85,80 @@ module.exports = {
           brass: "#9A7B4F",
         },
       },
+      spacing: {
+        "margin-desktop": "4rem",
+        "space-2xl": "8rem",
+        "space-sm": "0.5rem",
+        "space-xl": "4rem",
+        "space-xs": "0.25rem",
+        "space-lg": "2rem",
+        "gutter-desktop": "2.5rem",
+        gutter: "1.5rem",
+        margin: "1.5rem",
+        "space-md": "1rem",
+      },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
-        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        "body-md": ["Hanken Grotesk", "sans-serif"],
+        display: ["Newsreader", "Georgia", "serif"],
+        "headline-lg": ["Newsreader", "Georgia", "serif"],
+        "headline-sm": ["Hanken Grotesk", "sans-serif"],
+        "body-sm": ["Hanken Grotesk", "sans-serif"],
+        "headline-lg-mobile": ["Newsreader", "Georgia", "serif"],
+        "headline-md": ["Newsreader", "Georgia", "serif"],
+        "display-mobile": ["Newsreader", "Georgia", "serif"],
+        "label-lg": ["Hanken Grotesk", "sans-serif"],
+        "label-mono": ["Space Mono", "monospace"],
+        "body-lg": ["Hanken Grotesk", "sans-serif"],
+        serif: ["Newsreader", "var(--font-cormorant)", "Georgia", "serif"],
+        sans: ["Hanken Grotesk", "var(--font-jakarta)", "system-ui", "sans-serif"],
+      },
+      fontSize: {
+        "body-md": [
+          "0.9375rem",
+          { lineHeight: "1.6rem", letterSpacing: "0.005em", fontWeight: "400" },
+        ],
+        display: [
+          "5rem",
+          { lineHeight: "5.25rem", letterSpacing: "-0.02em", fontWeight: "400" },
+        ],
+        "headline-lg": [
+          "3.5rem",
+          { lineHeight: "3.85rem", letterSpacing: "-0.015em", fontWeight: "400" },
+        ],
+        "headline-sm": [
+          "1.375rem",
+          { lineHeight: "1.75rem", letterSpacing: "0.02em", fontWeight: "500" },
+        ],
+        "body-sm": [
+          "0.8125rem",
+          { lineHeight: "1.35rem", letterSpacing: "0.01em", fontWeight: "400" },
+        ],
+        "headline-lg-mobile": [
+          "2.25rem",
+          { lineHeight: "2.6rem", letterSpacing: "-0.01em", fontWeight: "400" },
+        ],
+        "headline-md": [
+          "2.25rem",
+          { lineHeight: "2.6rem", letterSpacing: "-0.01em", fontWeight: "400" },
+        ],
+        "display-mobile": [
+          "3rem",
+          { lineHeight: "3.25rem", letterSpacing: "-0.01em", fontWeight: "400" },
+        ],
+        "label-lg": [
+          "0.75rem",
+          { lineHeight: "1rem", letterSpacing: "0.12em", fontWeight: "600" },
+        ],
+        "label-mono": [
+          "0.6875rem",
+          { lineHeight: "1rem", letterSpacing: "0.06em", fontWeight: "400" },
+        ],
+        "body-lg": [
+          "1.125rem",
+          { lineHeight: "1.8rem", letterSpacing: "0em", fontWeight: "400" },
+        ],
       },
     },
   },
   plugins: [],
 };
-

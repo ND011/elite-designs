@@ -10,3 +10,37 @@
   4. /materials: Tactile material cards (BWR ply, MS tube, fluted glass) & joinery exploder
   5. /builder: 2D snap-to-grid modular frame planner with live budget/parts counter
 
+
+HOME
+│
+├── ABOUT THE STUDIO
+│   ├── Studio Introduction
+│   ├── Founder Profile
+│   ├── Design Philosophy
+│   └── Design Process
+│
+├── PROJECTS
+│   ├── Architecture
+│   ├── Interior Design
+│   ├── Retail & Commercial
+│   ├── Furniture Design
+│   └── Product Design
+│
+├── SERVICES
+│   ├── Architecture & Building Design
+│   ├── Interior Architecture & Design
+│   ├── Furniture Design
+│   ├── Product Design
+│   └── Design Consultancy
+│
+├── JOURNAL
+│   ├── Design Insights
+│   ├── Materials & Sustainability
+│   └── Design Research
+│
+├── CONTACT
+│   ├── Project Enquiry
+│   ├── Email & Telephone
+│   └── Social Media
+│
+└── PRIVACY POLICY

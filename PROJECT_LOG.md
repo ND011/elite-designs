@@ -112,3 +112,47 @@ This log tracks every architectural decision, file creation, bug fix, and verifi
 - Committed all remaining routes as **Version 1 (`v1.0.0`)**.
 - Tagged release `v1.0.0` (`Version 1: Complete Growspace × Elite Designs Platform`).
 - Pushed `main` branch and `v1.0.0` tag to `https://github.com/ND011/elite-designs.git`.
+
+
+---
+
+## [2026-11-12] Session 05 — Google Stitch Project `3055648139939892831` Integration (`VERNACULAR × ELITE DESIGNS`)
+
+### 1. Fetched & Extracted All 4 Screens from Stitch Project `3055648139939892831`
+- Connected to the `stitch` MCP server and fetched project `3055648139939892831` (`Design Firm Website Requirements`):
+  - **Screen 1 (`74d3d98eb8ea443b9296f730a191631d`)**: `Home — VERNACULAR Architecture & Spaces`
+  - **Screen 2 (`8424c829e8914c14b68d126abd7b414e`)**: `About — VERNACULAR Studio`
+  - **Screen 3 (`2445dfd05a654dfbbef11f9d96d6c47e`)**: `Projects — VERNACULAR Portfolio`
+  - **Screen 4 (`c693930227a34346a4a4b1e90e4f7fab`)**: `Services — VERNACULAR Architecture`
+
+### 2. Design System & Typography Tokens (`tailwind.config.js` & `app/layout.js`)
+- Extended `tailwind.config.js` with the complete Stitch color palette (`surface`, `surface-container-low`, `surface-container-highest`, `primary`, `secondary`, `outline`, `inverse-surface`, etc.), spacing scale (`margin-desktop`, `space-2xl`, `gutter-desktop`, etc.), and typography scale (`display`, `headline-lg`, `headline-md`, `headline-sm`, `body-lg`, `body-md`, `label-lg`, `label-mono`).
+- Loaded `Newsreader`, `Hanken Grotesk`, `Space Mono`, and `Material Symbols Outlined` via `<link>` tags in `app/layout.js`.
+
+### 3. Implemented Full Multi-Page Stitch Architecture (`app/`)
+- **`components/Navbar.jsx` & `components/Footer.jsx`**: Implemented the Stitch top header and dark editorial footer with links to `Home`, `About`, `Projects`, `Services`, `Journal`, `Contact`, plus a `[Spatial Lab]` dropdown preserving instant access to `/space-check`, `/diagnosis`, `/materials`, and `/builder`.
+- **`app/page.js` (Home)**: Full Stitch hero (`Tectonic Rigor. Sensual Materiality.`), `[01 / Manifesto]` Studio Introduction & Metrics, `[02 / Archive]` Featured Works grid, `[03 / Disciplines]` Core Competencies, `[04 / Ethos]` Tenets of Quiet Permanence with macro material specimens, `[05 / Register]` Selected Works Chronology table, and Commission CTA.
+- **`app/about/page.js` (About)**: Editorial Header, Genesis & Habitat, Founder Profile featuring **Mohammadali G. Tharadara** (`public/brand/founder-portrait.jpg`) alongside studio directors, Three Tenets of Tectonic Permanence, interactive 4-Phase `The Rigor of Realization` process selector, Recognition & Publications, and Commission Callout.
+- **`app/projects/page.js` (Projects)**: Interactive Category Filter Tabs (`All Works`, `Architecture`, `Interior Design`, `Retail & Commercial`, `Furniture Design`, `Product Design`), `Editorial Grid` vs. `Archival Index` view mode switcher, 11-project catalogue, and inline Case Study (`The Alpine Monolith`) with 1:100 Ground Level Plan SVG CAD diagram.
+- **`app/services/page.js` (Services)**: Atelier Pratique coordinate bar, Studio Capacities metric strip, 5 Core Services Deep-Dive modules, 4-Phase Engagement Matrix, Craft Guild Integration SVG timeline, and Master Guilds & Technical Partners.
+- **`app/journal/page.js` & `app/contact/page.js`**: Research monographs index and interactive Commission Registration Dossier form with direct WhatsApp/Email dispatch and official Elite Designs business card.
+
+
+---
+
+## [2026-11-12] Session 06 — Pure Elite Designs Identity & Official Logo Update
+
+### 1. Official Logo Integration (`public/brand/elite-logo.jpg`)
+- Saved the uploaded **ELITE DESIGNS** circular monogram + wordmark logo to `public/brand/elite-logo.jpg` and `public/brand/logo-square.jpg`.
+- Updated `components/Navbar.jsx`, `components/Footer.jsx`, `app/page.js`, `app/about/page.js`, and `app/contact/page.js` to display the official logo prominently.
+
+### 2. Replaced All Fictional Placeholder Text with Authentic Elite Designs Details
+- Removed all fictional "VERNACULAR", "Elena S. Varga", and European/Japanese placeholder text across `app/page.js`, `app/about/page.js`, `app/projects/page.js`, `app/services/page.js`, `app/journal/page.js`, and `app/contact/page.js`.
+- Connected every Stitch page directly to `data/studioData.js` so that 100% of the website reflects **Elite Designs** (`Mohammadali G. Tharadara`, Master's in Design, Designer + Educator, Ahmedabad, Gujarat, India, `+91 89806 76705`, `mg.th257@gmail.com`, `@elitedesigns226`, LinkedIn, and the 6 real Elite Designs portfolio case studies and presentation sheets).
+
+
+### 3. High-Contrast Transparent PNG Logo Processing
+- Processed `public/brand/elite-logo.jpg` via Python `PIL` + `numpy` to eliminate all JPEG background noise, enhance stroke contrast, and generate 4 tightly-cropped transparent PNG variants:
+  - `public/brand/elite-emblem-dark.png` & `public/brand/elite-emblem-light.png` (circular `eD` emblem only, zero outer margin waste).
+  - `public/brand/elite-logo-full-dark.png` & `public/brand/elite-logo-full-light.png` (full emblem + `— ELITE DESIGNS —` wordmark).
+- Updated `Navbar.jsx` (`h-14 w-14` emblem), `Footer.jsx` (`w-20 h-20` light emblem), `app/page.js` (`w-44 md:w-52` full light logo), `app/about/page.js` (`w-40` full dark logo), and `app/contact/page.js` (`w-36` full dark logo).
